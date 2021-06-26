@@ -1,10 +1,12 @@
 import axios from 'axios';
 import './App.css';
 import {useState, useEffect} from 'react';
+import Form from './Form';
 
 function App() {
 
 const [location, setLocation] = useState([]);
+const [formSubmit, setFormSubmit] =useState(false);
 
 const searchAhead = "http://www.mapquestapi.com/search/v3/prediction";
 
@@ -52,8 +54,6 @@ const searchApi = "http://www.mapquestapi.com/search/v2/search";
 //   });
 // }, []);
 
-<h1>HELLO WORLD!</h1>
-
 useEffect(() => {
   axios({
     url: geoCode,
@@ -86,18 +86,14 @@ useEffect(() => {
 }, []);
 
 
-
-
-
-
 return (
   <div className="App">
     <h1>HELLO WORLD!</h1>
+    <Form />
   </div>
 );
  
 }
-
 
 
 export default App;
