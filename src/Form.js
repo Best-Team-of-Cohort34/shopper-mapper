@@ -20,23 +20,23 @@ const Form = (props) => {
       // console.log(event.target.value);
       // console.log(userLocation)
     };
+  const handleSelection = (event) => {
+    event.preventDefault();
+    setUserCategoryForm(event.target.value);
+  };
     const storedUserInput = (event) => {
       event.preventDefault();
-      // props.userSubmitFlag();
       location = userPrompt;
-      console.log(location + " in form");
+      category = userCategoryForm;
+
       props.receivedUserInput(location);
+      props.receivedUserCategory(category);
+      console.log(category + " in the form state variable");
+      console.log(location + " in form");
+
     };
 
-  const handleSelection = (event) => {
-    // event.preventDefault();
-    console.log(event);
-    setUserCategoryForm(event.target.value);
-    category = userCategoryForm;
-    console.log(event.target.value + " in the form event");
-    console.log(category + " in the form state variable");
-    props.receivedUserCategory(category);
-  }
+
 
  
     
@@ -57,7 +57,7 @@ const Form = (props) => {
           <label htmlFor="category">
             Enter the category
           </label>
-          <select onChange={handleSelection} value={userCategoryForm} name="category" id="category">
+          <select onChange={handleSelection} name="category" id="category" defaultValue="">
             <option value="" disabled>Pick One: </option>
             <option value="coffee shops">coffee shops</option>
             <option value="restaurants">restaurants</option>
