@@ -5,15 +5,21 @@ import Form from './Form';
 
 function App() {
 
-const [location, setLocation] = useState([]);
-const [formSubmit, setFormSubmit] =useState(false);
-
-const searchAhead = "http://www.mapquestapi.com/search/v3/prediction";
+const [coordinates, setCoordinates] = useState([]);
+const [userLocation, setUserLocation] = useState('Toronto');
+  const [userCategory, setUserCategory] = useState('');
 
 const geoCode = "http://www.mapquestapi.com/geocoding/v1/address";
 
 const searchApi = "http://www.mapquestapi.com/search/v2/search";
 
+
+const receivedUserInput = (loc) => {
+  setUserLocation(loc);
+}
+const receivedUserCategory = (cat) => {
+  setUserCategory(cat);
+}
 
 // const placeSearch = "https://api3";
 // const requestOne = axios.get(one);
@@ -53,6 +59,10 @@ const searchApi = "http://www.mapquestapi.com/search/v2/search";
 //     setLocation(response.data.results);
 //   });
 // }, []);
+  
+useEffect(() => {
+  // console.log("inside empty useEffect")
+}, [userLocation])
 
 useEffect(() => {
   axios({
@@ -61,12 +71,15 @@ useEffect(() => {
     dataResponse: "json",
     params: {
       key: "0GC7xtayS34G212Wj5J2TyiN11A1jK5G",
+      location: userLocation
     },
   }).then((response) => {
     console.log(response);
-    setLocation(response.data.results);
+    setCoordinates(response.data.results);
   });
-}, []);
+}, [userLocation]);
+  
+ 
 
 useEffect(() => {
   axios({
@@ -81,7 +94,7 @@ useEffect(() => {
 
   }).then((response) => {
     console.log(response);
-    setLocation(response.data.results);
+    // setLocation(response.data.results);
   });
 }, []);
 
@@ -89,7 +102,7 @@ useEffect(() => {
 return (
   <div className="App">
     <h1>HELLO WORLD!</h1>
-    <Form />
+    <Form receivedUserInput={receivedUserInput} receivedUserCategory={ receivedUserCategory }/>
   </div>
 );
  
