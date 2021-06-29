@@ -4,6 +4,9 @@ import axios from 'axios';
 // import L from 'leaflet';
 // import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; // Re-uses images from ~leaflet package
+import * as L from 'leaflet';
+import 'leaflet-defaulticon-compatibility';
 
 const placeSearch = 'https://www.mapquestapi.com/search/v4/place';
 
@@ -14,13 +17,11 @@ const placeSearch = 'https://www.mapquestapi.com/search/v4/place';
 //     iconUrl: require('leaflet/dist/images/marker-icon.png'),
 //     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 // });
-// const icon = L.Icon({ 
+// const icon = L.Icon({
 //   iconUrl: require('../node_modules/leaflet/dist/images/marker-icon.png'),
 //   iconSize: [30, 42],
 //   iconAnchor: [15, 42]
 // });
-
-
 
 const Form = (props) => {
   const [userPrompt, setUserPrompt] = useState('');
@@ -154,7 +155,6 @@ const Form = (props) => {
             shopper <span>mapper</span>
           </p>
 
-
           <Map
             className="leaflet-container"
             center={[props.coordinates[0], props.coordinates[1]]}
@@ -180,12 +180,12 @@ const Form = (props) => {
                     item.place.geometry.coordinates[0],
                   ]}
                   src="./map-marker-icon.png"
-              >
-                <Popup>
-                  <h3>This is where you are</h3>
-                </Popup>
-              </Marker>
-              )
+                >
+                  <Popup>
+                    <h3>This is where you are</h3>
+                  </Popup>
+                </Marker>
+              );
             })}
           </Map>
         </div>
@@ -195,3 +195,5 @@ const Form = (props) => {
 };
 
 export default Form;
+
+// 5 Glen Cameron Rd Thornhill, ON
