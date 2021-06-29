@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import axios from 'axios';
-import L from 'leaflet';
-import { Icon } from 'leaflet';
+// import L from 'leaflet';
+// import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const placeSearch = 'https://www.mapquestapi.com/search/v4/place';
@@ -85,7 +85,7 @@ const Form = (props) => {
       // console.log(response.data.results);
       setPlaces(response.data.results);
     });
-  }, [submitted, userCategoryForm]);
+  }, [submitted, userCategoryForm, locationCircArr]);
 
   // console.log(props.coordinates);
 
