@@ -3,10 +3,24 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import axios from 'axios';
 import L from 'leaflet';
 import { Icon } from 'leaflet';
-// import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet.css';
 
 const placeSearch = 'https://www.mapquestapi.com/search/v4/place';
-const icon = L.icon({ iconUrl: '/images/marker-icon.png' });
+
+// delete L.Icon.Default.prototype._getIconUrl;
+
+// L.Icon.Default.mergeOptions({
+//     iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+//     iconUrl: require('leaflet/dist/images/marker-icon.png'),
+//     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+// });
+// const icon = L.Icon({ 
+//   iconUrl: require('../node_modules/leaflet/dist/images/marker-icon.png'),
+//   iconSize: [30, 42],
+//   iconAnchor: [15, 42]
+// });
+
+
 
 const Form = (props) => {
   const [userPrompt, setUserPrompt] = useState('');
@@ -17,6 +31,9 @@ const Form = (props) => {
   // const [locationArr, setLocationArr] = useState('43.648434, -79.397947');
   const [places, setPlaces] = useState([]);
   const [submitted, SetSubmitted] = useState(false);
+
+  // const [places, setPlaces] = useState([]);
+  // const places = response.data.results;
 
   let location = '';
   let category = '';
@@ -62,10 +79,13 @@ const Form = (props) => {
         q: userCategoryForm,
       },
     }).then((response) => {
+      console.log(response);
+      // setPlaces(response.data.results)
+      // const places = response.data.results;
       // console.log(response.data.results);
       setPlaces(response.data.results);
     });
-  }, [submitted, userCategoryForm, locationCircArr]);
+  }, [submitted, userCategoryForm]);
 
   // console.log(props.coordinates);
 
@@ -134,6 +154,7 @@ const Form = (props) => {
             shopper <span>mapper</span>
           </p>
 
+
           <Map
             className="leaflet-container"
             center={[props.coordinates[0], props.coordinates[1]]}
@@ -151,14 +172,20 @@ const Form = (props) => {
               //   item.place.geometry.coordinates[0],
               //   item.place.geometry.coordinates[1]
               // );
-              <Marker
-                key={item.id}
-                position={[
-                  item.place.geometry.coordinates[1],
-                  item.place.geometry.coordinates[0],
-                ]}
-                icon={icon}
-              />;
+              return (
+                <Marker
+                  key={item.id}
+                  position={[
+                    item.place.geometry.coordinates[1],
+                    item.place.geometry.coordinates[0],
+                  ]}
+                  src="./map-marker-icon.png"
+              >
+                <Popup>
+                  <h3>This is where you are</h3>
+                </Popup>
+              </Marker>
+              )
             })}
           </Map>
         </div>
