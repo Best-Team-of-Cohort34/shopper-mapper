@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 
 const Form = (props) => {
   const [userPrompt, setUserPrompt] = useState('');
@@ -76,27 +76,15 @@ const Form = (props) => {
         </form>
       </div>
     </header>
-    {/* <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
-    <TileLayer
-    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    />
-    <Marker position={[51.505, -0.09]}>
-    <Popup>
-      A pretty CSS3 popup. <br /> Easily customizable.
-    </Popup>
-    </Marker>
-    </MapContainer> */}
-    {/* <div id="mapid"></div> */}
-    <Map 
-      center={[this.state.lat, this.state.lng]} 
-      zoom={this.state.zoom} 
-      style={{ width: '100%', height: '900px'}}
-    >
-    <TileLayer
-      attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    />
+    <Map
+    className="leaflet-container"
+    center={[43.648210, -79.397860]}
+    zoom={10}>
+      <TileLayer
+        url={
+          "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
+        }
+      />
     </Map>
     </>
   );
