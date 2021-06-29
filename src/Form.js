@@ -11,6 +11,9 @@ const Form = (props) => {
     '-79.397947, 43.648434, 1000'
   );
 
+  // const [places, setPlaces] = useState([]);
+  // const places = response.data.results;
+
   let location = '';
   let category = '';
 
@@ -58,6 +61,8 @@ const Form = (props) => {
       },
     }).then((response) => {
       console.log(response);
+      // setPlaces(response.data.results)
+      // const places = response.data.results;
     });
   }, [userCategoryForm][locationCircArr]);
 
@@ -70,7 +75,7 @@ const Form = (props) => {
       </div>
       <div className="descriptionAndFormContainer">
         <div className="description">
-          <h1>Type in your current address and choose a category of place you would like to go. We'll return suggestions for every instance of that category within a 10km radius from your location!</h1>
+          <h1>Type in your current address and choose a category of place you would like to go. We'll return suggestions for every instance of that category within a 10km radius of your location!</h1>
         </div>
         <form action="submit">
           <label htmlFor="userInput" className="sr-only">
@@ -107,14 +112,25 @@ const Form = (props) => {
     </header>
     <Map
     className="leaflet-container"
-    center={[43.648210, -79.397860]}
-    zoom={10}>
+    center={[43.709670, -79.388960]}
+    zoom={10}
+    >
       <TileLayer
         url={
           "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
         }
       />
+    {/* {places.map(location => (
+      <Marker key={location.results.id}
+      position={[
+        location.place.geometry.coordinates[1],
+        location.place.geometry.coordinates[0]
+      ]}
+      />
+    ))} */}
     </Map>
+
+
     </>
   );
 };
