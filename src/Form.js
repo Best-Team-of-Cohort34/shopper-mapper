@@ -52,20 +52,20 @@ const Form = (props) => {
   useEffect(() => {
     axios({
       url: placeSearch,
-      method: 'GET',
-      dataResponse: 'json',
+      method: "GET",
+      dataResponse: "json",
       params: {
         circle: locationCircArr,
         pageSize: 20,
-        key: '0GC7xtayS34G212Wj5J2TyiN11A1jK5G',
-        sort: 'relevance',
+        key: "0GC7xtayS34G212Wj5J2TyiN11A1jK5G",
+        sort: "relevance",
         q: userCategoryForm,
       },
     }).then((response) => {
       // console.log(response.data.results);
       setPlaces(response.data.results);
     });
-  }, [submitted]);
+  }, [submitted, userCategoryForm, locationCircArr]);
 
   // console.log(props.coordinates);
 
