@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
+import axios from 'axios';
+
+const placeSearch = 'https://www.mapquestapi.com/search/v4/place';
 
 const Form = (props) => {
   const [userPrompt, setUserPrompt] = useState('');
-  const [userCategoryForm, setUserCategoryForm] = useState('');
+  const [userCategoryForm, setUserCategoryForm] = useState('restaurant');
+  const [locationCircArr, setlocationCircArr] = useState(
+    '-79.397947, 43.648434, 1000'
+  );
 
   let location = '';
   let category = '';
@@ -20,6 +26,7 @@ const Form = (props) => {
   const handleSelection = (event) => {
     event.preventDefault();
     setUserCategoryForm(event.target.value);
+    setlocationCircArr(props.coordinates);
   };
   const storedUserInput = (event) => {
     event.preventDefault();
@@ -31,6 +38,28 @@ const Form = (props) => {
     console.log(category + ' in the form state variable');
     console.log(location + ' in form');
   };
+  console.log(props.coordinates);
+  // setlocationCircArr(props.coordinates);
+  // console.log(locationCircArr);
+
+  useEffect(() => {
+    axios({
+      url: placeSearch,
+      method: 'GET',
+      dataResponse: 'json',
+      params: {
+        circle: locationCircArr,
+        // circle: props.coordinates,
+        pageSize: 20,
+        key: '0GC7xtayS34G212Wj5J2TyiN11A1jK5G',
+        sort: 'relevance',
+        q: userCategoryForm,
+        // results: { countryCode: '+1' },
+      },
+    }).then((response) => {
+      console.log(response);
+    });
+  }, [userCategoryForm][locationCircArr]);
 
   return (
     <>
