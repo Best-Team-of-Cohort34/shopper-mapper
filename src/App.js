@@ -70,12 +70,11 @@ function App() {
     }).then((response) => {
       console.log(response);
     });
-   
   }, [coordinates,locationArr]);
 
   return (
     <div className="App">
-      <h1>HELLO WORLD!</h1>
+      {/* <h1>HELLO WORLD!</h1> */}
       <Form
         receivedUserInput={receivedUserInput}
         receivedUserCategory={receivedUserCategory}
