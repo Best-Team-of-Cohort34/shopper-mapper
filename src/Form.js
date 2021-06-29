@@ -15,7 +15,7 @@ const placeSearch = 'https://www.mapquestapi.com/search/v4/place';
 //     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 // });
 // const icon = L.Icon({ 
-//   iconUrl: require('../node_modules/leaflet/dist/images/marker-icon.png'),
+//   iconUrl: require('leaflet/dist/images/marker-icon.png'),
 //   iconSize: [30, 42],
 //   iconAnchor: [15, 42]
 // });
@@ -179,12 +179,11 @@ const Form = (props) => {
                     item.place.geometry.coordinates[1],
                     item.place.geometry.coordinates[0],
                   ]}
-                  src="./map-marker-icon.png"
-              >
-                <Popup>
-                  <h3>This is where you are</h3>
-                </Popup>
-              </Marker>
+                >
+                  <Popup>
+                    <h3>This is where you are</h3>
+                  </Popup>
+                </Marker>
               )
             })}
           </Map>
