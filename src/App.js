@@ -14,7 +14,6 @@ function App() {
   const [userCategory, setUserCategory] = useState('restaurant');
   const [locationCircArr, setLocationCircArr] = useState([]);
 
-
   const receivedUserInput = (loc) => {
     setUserLocation(loc);
   };
@@ -48,8 +47,7 @@ function App() {
   // console.log(locationCircArr);
 
   // useEffect(() => {
-    
-    
+
   //     axios({
   //       url: placeSearch,
   //     method: 'GET',
@@ -72,7 +70,8 @@ function App() {
       <Form
         receivedUserInput={receivedUserInput}
         receivedUserCategory={receivedUserCategory}
-        coordinates={`${coordinates.lng}, ${coordinates.lat}, 1000`}
+        circCoordinates={`${coordinates.lng}, ${coordinates.lat}, 1000`}
+        coordinates={[coordinates.lat, coordinates.lng]}
       />
     </div>
   );
