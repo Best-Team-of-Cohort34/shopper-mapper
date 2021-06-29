@@ -3,16 +3,17 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import Form from './Form';
 
+const geoCode = 'http://www.mapquestapi.com/geocoding/v1/address';
+
 function App() {
-  const [coordinates, setCoordinates] = useState([]);
+  const [coordinates, setCoordinates] = useState({});
   const [userLocation, setUserLocation] = useState(
     '483 Queen St W 3rd floor, Toronto, ON M5V 2A9'
   );
-  const [userCategory, setUserCategory] = useState('');
+  const [userCategory, setUserCategory] = useState('restaurant');
 
-  const geoCode = 'http://www.mapquestapi.com/geocoding/v1/address';
-  const searchApi = 'http://www.mapquestapi.com/search/v2/search';
-  const placeSearch = 'https://www.mapquestapi.com/search/v4/place';
+  // state for longtitude, latitude and circle pass to placesearch api
+  const [locationCirArr, setLocationCirArr] = useState([]);
 
   const receivedUserInput = (loc) => {
     setUserLocation(loc);
@@ -31,36 +32,20 @@ function App() {
         location: userLocation,
       },
     }).then((response) => {
-      // console.log(response.data.results);
-      const data = response.data.results[0].locations;
-      const newArr = [...data];
-      newArr.forEach((item) => {
-        console.log(item.latLng);
-        setCoordinates(item.latLng);
-      });
+      setCoordinates(response.data.results[0].locations[0].latLng);
     });
   }, [userLocation]);
-  const locationArr = [coordinates.lng, coordinates.lat];
-  const locationCircArr = [coordinates.lng, coordinates.lat, 1000];
-  console.log(locationArr);
-  console.log(locationCircArr);
-
-  useEffect(() => {
-    axios({
-      url: placeSearch,
-      method: 'GET',
-      dataResponse: 'json',
-      params: {
-        sort: 'relevance',
-        key: '0GC7xtayS34G212Wj5J2TyiN11A1jK5G',
-        circle: locationCircArr,
-        q: 'bars',
-        location: locationArr,
-      },
-    }).then((response) => {
-      console.log(response);
-    });
-  }, [coordinates]);
+  console.log(coordinates);
+  // console.log(typeof coordinates);
+  // const newArr = [...coordinates];
+  // console.log(newArr);
+  // console.log(coordinates);
+  // console.log(locationArr);
+  // console.log(locationCirArr);
+  // const locationArr = [coordinates.lng, coordinates.lat];
+  // const locationCircArr = [coordinates.lng, coordinates.lat, 1000];
+  // console.log(locationArr);
+  // console.log(locationCircArr);
 
   return (
     <div className="App">
@@ -68,6 +53,7 @@ function App() {
       <Form
         receivedUserInput={receivedUserInput}
         receivedUserCategory={receivedUserCategory}
+        coordinates={`${coordinates.lng}, ${coordinates.lat}, 1000`}
       />
     </div>
   );
