@@ -7,3 +7,175 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 .visuallyHidden:not(:focus):not(:active) { position: absolute; width: 1px; height: 1px; margin: -1px;border: 0;padding: 0;white-space: nowrap;clip-path: inset(100%);clip: rect(00 0 0);overflow: hidden;}
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
+
+html {
+  font-size: 125%;
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 2px;
+  font-family: 'Barlow', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, li {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.wrapper {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+  /* border: 1px solid green; */
+}
+
+/* FORM/HEADER */
+
+h1 {
+  color: white;;
+  width: 70%;
+  text-align: center;
+  display: flex;
+  margin: 0 auto;
+  font-size: 1.5rem;
+}
+
+.formHeader {
+background-image: linear-gradient( rgba(2, 2, 2, 0.363), rgba(0, 0, 0, 0.438)), url("https://www.theladders.com/wp-content/uploads/food-191008.jpg");
+background-size: cover;
+background-repeat: no-repeat;
+height: 100vh;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  padding-top: 15px;
+  padding-left: 25px;
+  height: 10%;
+  /* border: 1px solid red; */
+}
+
+.fa-map-marked-alt {
+  font-size: 2.5rem;
+  color: white;
+}
+
+.logo p {
+  padding-top: 5px;
+  padding-left: 10px;
+  color: white;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  line-height: 0.8;
+  font-weight: bold;
+}
+
+.logo p span {
+  display: block;
+}
+
+.descriptionAndFormContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80vh;
+}
+
+.formHeader form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+input[type=text] {
+  margin-top: 20px;
+  width: 450px;
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  padding-left: 20px;
+  padding-top: 3px;
+}
+
+select {
+  width: 450px;
+  border: none;
+  height: 40px;
+  border-radius: 20px;
+  padding-left: 20px;
+  padding-top: 3px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.formButton {
+  background:#ff9d7f;
+  border: none;
+  height: 40px;
+  border-radius: 20px;
+  width: 250px;
+  padding-bottom: 3px;
+  transition: 0.3s;
+  text-transform: uppercase;
+  font-family: 'Barlow', sans-serif;
+}
+
+.formButton:hover {
+  background:#cfe39c; 
+  letter-spacing: 1px;
+}
+
+/* MAP */
+.leaflet-container {
+  padding: 70px;
+  /* height: calc(0.833 * 100vw - 160.06px); */
+  width: 100%;
+  max-height: 75vh;
+  max-width: 70%;
+  margin: 0 auto;
+  min-height: 270px;
+  min-width: 270px;
+  border-radius: 30px;
+  box-shadow: 0 0 10px #6f6f6f;
+  /* visibility: hidden; */
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-top: 82px;
+}
+
+
+
+/* MEDIA QUERIES */
+
+@media (max-width: 700px) {
+  h1 {
+    font-size: 1.25rem;
+  }
+  input[type=text] {
+    width: 290px;
+  }
+  select {
+    width: 290px;
+  }
+}
+
+@media (max-width: 500px) {
+  h1 {
+    font-size: 1rem;
+  }
+}

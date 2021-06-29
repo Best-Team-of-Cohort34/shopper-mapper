@@ -10,10 +10,10 @@ function App() {
   const [userLocation, setUserLocation] = useState(
     '483 Queen St W 3rd floor, Toronto, ON M5V 2A9'
   );
-  const [userCategory, setUserCategory] = useState('restaurant');
 
-  // state for longtitude, latitude and circle pass to placesearch api
-  const [locationCirArr, setLocationCirArr] = useState([]);
+  const [userCategory, setUserCategory] = useState('restaurant');
+  const [locationCircArr, setLocationCircArr] = useState([]);
+
 
   const receivedUserInput = (loc) => {
     setUserLocation(loc);
@@ -47,9 +47,28 @@ function App() {
   // console.log(locationArr);
   // console.log(locationCircArr);
 
+  // useEffect(() => {
+    
+    
+  //     axios({
+  //       url: placeSearch,
+  //     method: 'GET',
+  //     dataResponse: 'json',
+  //     params: {
+  //       sort: 'relevance',
+  //       key: '0GC7xtayS34G212Wj5J2TyiN11A1jK5G',
+  //       circle: locationCircArr,
+  //       q: userCategory,
+  //       location: locationArr,
+  //     },
+  //   }).then((response) => {
+  //     console.log(response);
+  //   });
+  // }, [coordinates,locationArr]);
+
   return (
     <div className="App">
-      <h1>HELLO WORLD!</h1>
+      {/* <h1>HELLO WORLD!</h1> */}
       <Form
         receivedUserInput={receivedUserInput}
         receivedUserCategory={receivedUserCategory}
