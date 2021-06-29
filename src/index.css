@@ -149,7 +149,7 @@ select {
   min-width: 270px;
   border-radius: 30px;
   box-shadow: 0 0 10px #6f6f6f;
-  /* visibility: hidden; */
+  visibility: hidden;
   position: fixed;
   top: 0;
   right: 0;
