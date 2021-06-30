@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import axios from 'axios';
 // import L from 'leaflet';
@@ -16,6 +16,8 @@ import 'leaflet-defaulticon-compatibility';
 //     iconUrl: require('leaflet/dist/images/marker-icon.png'),
 //     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 // });
+// const icon = L.Icon({ 
+//   iconUrl: require('leaflet/dist/images/marker-icon.png'),
 // const icon = L.Icon({
 //   iconUrl: require('../node_modules/leaflet/dist/images/marker-icon.png'),
 //   iconSize: [30, 42],
@@ -94,8 +96,8 @@ const Form = (props) => {
                 <option value="" disabled>
                   Where do you want to go?{' '}
                 </option>
-                <option value="coffee shops">coffee shops</option>
-                <option value="restaurants">restaurants</option>
+                <option value="coffee shops">Coffee Shops</option>
+                <option value="restaurants">Restaurants</option>
               </select>
               <button className="formButton" onClick={storedUserInput}>
                 Take me there!
@@ -114,43 +116,73 @@ const Form = (props) => {
           <p>
             shopper <span>mapper</span>
           </p>
+          <div className="mapAndTextContainer">
+            <div className="textContainer">
+              <h3>Title of Location</h3>
+              <p>address skdhoeih qlieheotih</p>
+              <p>duration</p>
+              <h3>Title of Location</h3>
+              <p>address skdhoeih qlieheotih</p>
+              <p>duration</p>
+              <h3>Title of Location</h3>
+              <p>address skdhoeih qlieheotih</p>
+              <p>duration</p>
+              <h3>Title of Location</h3>
+              <p>address skdhoeih qlieheotih</p>
+              <p>duration</p>
+               <h3>Title of Location</h3>
+              <p>address skdhoeih qlieheotih</p>
+              <p>duration</p>
+               <h3>Title of Location</h3>
+              <p>address skdhoeih qlieheotih</p>
+              <p>duration</p>
+               <h3>Title of Location</h3>
+              <p>address skdhoeih qlieheotih</p>
+              <p>duration</p>
+               <h3>Title of Location</h3>
+              <p>address skdhoeih qlieheotih</p>
+              <p>duration</p>
 
-          <Map
-            className="leaflet-container"
-            center={[props.coordinates[1], props.coordinates[0]]}
-            zoom={15}
-          >
-            <TileLayer
-              url={
-                'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
-              }
-            />
-            {
-              props.places.map((item) => {
-                console.log(item);
-                console.log(props.coordinates[0])
-              // console.log(item.id);
-              // console.log(
-              //   item.place.geometry.coordinates[0],
-              //   item.place.geometry.coordinates[1]
-              // );
-              return (
-                <Marker
-                  key={item.id}
-                  position={[
-                    item.place.geometry.coordinates[1],
-                    item.place.geometry.coordinates[0],
-                  ]}
-                  src="./map-marker-icon.png"
-                >
-                  <Popup>
-                    <h3>This is where you are</h3>
-                  </Popup>
-                </Marker>
-              );
-            })}
-          </Map>
-        </div>
+            </div>
+            <Map
+              className="leaflet-container"
+              center={[props.coordinates[1], props.coordinates[0]]}
+              zoom={15}
+            >
+              <TileLayer
+                url={
+                  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
+                }
+              />
+              {
+                props.places.map((item) => {
+                  console.log(item);
+                  console.log(props.coordinates[0])
+                // console.log(item.id);
+                // console.log(
+                //   item.place.geometry.coordinates[0],
+                //   item.place.geometry.coordinates[1]
+                // );
+                return (
+                  <Marker
+                    key={item.id}
+                    position={[
+                      item.place.geometry.coordinates[1],
+                      item.place.geometry.coordinates[0],
+                    ]}
+                    src="./map-marker-icon.png"
+                  >
+                    <Popup>
+                      <h3>{item.name}</h3>
+                      <button>click here for directions</button>
+                    </Popup>
+                  </Marker>
+                )
+              })}
+            </Map>
+          </div>
+          {/* <i class="far fa-window-close"></i> */}
+          </div>
       </header>
     );
   }
