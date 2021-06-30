@@ -8,7 +8,6 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import * as L from 'leaflet';
 import 'leaflet-defaulticon-compatibility';
 
-
 // delete L.Icon.Default.prototype._getIconUrl;
 
 // L.Icon.Default.mergeOptions({
@@ -26,15 +25,12 @@ const Form = (props) => {
   const [userPrompt, setUserPrompt] = useState('');
   const [userCategoryForm, setUserCategoryForm] = useState('restaurant');
   const [submitted, SetSubmitted] = useState(false);
-  
-  
+
   let location = '';
   let category = '';
-  
 
   const userInput = (event) => {
     setUserPrompt(event.target.value);
-    
   };
   const handleSelection = (event) => {
     event.preventDefault();
@@ -49,7 +45,6 @@ const Form = (props) => {
     props.receivedUserInput(location);
     props.receivedUserCategory(category);
   };
-  
 
   // rendering pages
   if (!submitted) {
@@ -106,7 +101,7 @@ const Form = (props) => {
         </header>
       </>
     );
-  } else  {
+  } else {
     return (
       <header className="formHeader">
         <div className="logo">
@@ -125,10 +120,9 @@ const Form = (props) => {
                 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
               }
             />
-            {
-              props.places.map((item) => {
-                console.log(item);
-                console.log(props.coordinates[0])
+            {props.places.map((item) => {
+              console.log(item);
+              console.log(props.coordinates[0]);
               // console.log(item.id);
               // console.log(
               //   item.place.geometry.coordinates[0],
@@ -144,7 +138,9 @@ const Form = (props) => {
                   src="./map-marker-icon.png"
                 >
                   <Popup>
-                    <h3>This is where you are</h3>
+                    <h3>{item.name}</h3>
+                    <p>{item.displayString}</p>
+                    <button onClick={console.log('clicked')}>Directions</button>
                   </Popup>
                 </Marker>
               );
