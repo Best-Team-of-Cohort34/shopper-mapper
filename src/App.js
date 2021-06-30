@@ -11,7 +11,6 @@ function App() {
  
 
   const geoCode = 'http://www.mapquestapi.com/geocoding/v1/address';
-  const searchApi = 'http://www.mapquestapi.com/search/v2/search';
   const placeSearch = 'https://www.mapquestapi.com/search/v4/place';
 
   const receivedUserInput = (loc) => {

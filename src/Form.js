@@ -1,28 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import axios from 'axios';
-// import L from 'leaflet';
-// import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; // Re-uses images from ~leaflet package
-import * as L from 'leaflet';
 import 'leaflet-defaulticon-compatibility';
-
-
-// delete L.Icon.Default.prototype._getIconUrl;
-
-// L.Icon.Default.mergeOptions({
-//     iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-//     iconUrl: require('leaflet/dist/images/marker-icon.png'),
-//     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
-// });
-// const icon = L.Icon({ 
-//   iconUrl: require('leaflet/dist/images/marker-icon.png'),
-// const icon = L.Icon({
-//   iconUrl: require('../node_modules/leaflet/dist/images/marker-icon.png'),
-//   iconSize: [30, 42],
-//   iconAnchor: [15, 42]
-// });
 
 const Form = (props) => {
   const [userPrompt, setUserPrompt] = useState('');
