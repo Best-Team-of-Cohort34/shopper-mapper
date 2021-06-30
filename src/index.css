@@ -284,6 +284,7 @@ h1 {
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
+  position: relative;
 }
 
 .logo {
@@ -387,6 +388,14 @@ select {
   left: 0;
   margin-top: 82px;
 }
+
+/* .fa-window-close {
+  color: black;
+  font-size: 1.5rem;
+  position: absolute;
+  right: 228px;
+  top: 91px;
+} */
 
 /* MEDIA QUERIES */
 

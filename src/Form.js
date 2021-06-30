@@ -1,9 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import axios from 'axios';
-import L from 'leaflet';
-import { Icon } from 'leaflet';
+// import L from 'leaflet';
+// import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; // Re-uses images from ~leaflet package
+import * as L from 'leaflet';
+import 'leaflet-defaulticon-compatibility';
 
 const placeSearch = 'https://www.mapquestapi.com/search/v4/place';
 
@@ -16,11 +19,11 @@ const placeSearch = 'https://www.mapquestapi.com/search/v4/place';
 // });
 // const icon = L.Icon({ 
 //   iconUrl: require('leaflet/dist/images/marker-icon.png'),
+// const icon = L.Icon({
+//   iconUrl: require('../node_modules/leaflet/dist/images/marker-icon.png'),
 //   iconSize: [30, 42],
 //   iconAnchor: [15, 42]
 // });
-
-
 
 const Form = (props) => {
   const [userPrompt, setUserPrompt] = useState('');
@@ -85,8 +88,7 @@ const Form = (props) => {
       // console.log(response.data.results);
       setPlaces(response.data.results);
     });
-  }, [submitted, userCategoryForm]);
-
+  }, [submitted, userCategoryForm, locationCircArr]);
   // console.log(props.coordinates);
 
   // rendering pages
@@ -132,8 +134,8 @@ const Form = (props) => {
                 <option value="" disabled>
                   Where do you want to go?{' '}
                 </option>
-                <option value="coffee shops">coffee shops</option>
-                <option value="restaurants">restaurants</option>
+                <option value="coffee shops">Coffee Shops</option>
+                <option value="restaurants">Restaurants</option>
               </select>
               <button className="formButton" onClick={storedUserInput}>
                 {/* {userPrompt === '' ? 'Loading...' : 'Search'} */}
@@ -153,8 +155,7 @@ const Form = (props) => {
           <p>
             shopper <span>mapper</span>
           </p>
-
-
+          <div className="overlay"></div>
           <Map
             className="leaflet-container"
             center={[props.coordinates[0], props.coordinates[1]]}
@@ -179,6 +180,7 @@ const Form = (props) => {
                     item.place.geometry.coordinates[1],
                     item.place.geometry.coordinates[0],
                   ]}
+                  src="./map-marker-icon.png"
                 >
                   <Popup>
                     <h3>This is where you are</h3>
@@ -187,6 +189,7 @@ const Form = (props) => {
               )
             })}
           </Map>
+          {/* <i class="far fa-window-close"></i> */}
         </div>
       </header>
     );
@@ -194,3 +197,5 @@ const Form = (props) => {
 };
 
 export default Form;
+
+// 5 Glen Cameron Rd Thornhill, ON
