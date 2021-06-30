@@ -3,16 +3,16 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import Form from './Form';
 
-const geoCode = 'http://www.mapquestapi.com/geocoding/v1/address';
-
 function App() {
-  const [coordinates, setCoordinates] = useState({});
-  const [userLocation, setUserLocation] = useState(
-    '483 Queen St W 3rd floor, Toronto, ON M5V 2A9'
-  );
+  const [coordinates, setCoordinates] = useState([]);
+  const [userLocation, setUserLocation] = useState('Toronto');
+  const [userCategory, setUserCategory] = useState('coffee shops');
+  const [places, setPlaces] = useState([]);
+ 
 
-  const [userCategory, setUserCategory] = useState('restaurant');
-  const [locationCircArr, setLocationCircArr] = useState([]);
+  const geoCode = 'http://www.mapquestapi.com/geocoding/v1/address';
+  const searchApi = 'http://www.mapquestapi.com/search/v2/search';
+  const placeSearch = 'https://www.mapquestapi.com/search/v4/place';
 
   const receivedUserInput = (loc) => {
     setUserLocation(loc);
@@ -31,47 +31,59 @@ function App() {
         location: userLocation,
       },
     }).then((response) => {
-      setCoordinates(response.data.results[0].locations[0].latLng);
+      const data = response.data.results[0].locations;
+      const newArr = [data[0].latLng.lng, data[0].latLng.lat];
+      console.log("setting Coordinates state")
+      console.log(newArr);
+      setCoordinates(newArr);
+
     });
   }, [userLocation]);
-  console.log(coordinates);
-  // console.log(typeof coordinates);
-  // const newArr = [...coordinates];
-  // console.log(newArr);
-  // console.log(coordinates);
-  // console.log(locationArr);
-  // console.log(locationCirArr);
-  // const locationArr = [coordinates.lng, coordinates.lat];
-  // const locationCircArr = [coordinates.lng, coordinates.lat, 1000];
-  // console.log(locationArr);
-  // console.log(locationCircArr);
+  
 
-  // useEffect(() => {
+ 
 
-  //     axios({
-  //       url: placeSearch,
-  //     method: 'GET',
-  //     dataResponse: 'json',
-  //     params: {
-  //       sort: 'relevance',
-  //       key: '0GC7xtayS34G212Wj5J2TyiN11A1jK5G',
-  //       circle: locationCircArr,
-  //       q: userCategory,
-  //       location: locationArr,
-  //     },
-  //   }).then((response) => {
-  //     console.log(response);
-  //   });
-  // }, [coordinates,locationArr]);
+  useEffect(() => {
+    console.log("coordinates state value before initializing location and circle in placeapi useeffect")
+    console.log(coordinates);
+   
+    if (coordinates.length > 0) {
+      
+      const locationArr = `${coordinates[0]},${coordinates[1]}`;
+      const locationCircArr = `${coordinates[0]}, ${coordinates[1]}, 1000`;
+      console.log("values of locationArr and locationCircArr in place api useeffect");
+      console.log(locationArr);
+      console.log(locationCircArr);
+      
+      axios({
+        url: placeSearch,
+        method: 'GET',
+        dataResponse: 'json',
+        params: {
+         
+          location: locationArr,
+          sort: 'relevance',
+          key: '0GC7xtayS34G212Wj5J2TyiN11A1jK5G',
+          circle: locationCircArr,
+          pageSize: 30,
+          q: userCategory
+        },
+      }).then((response) => {
+        
+        console.log(response);
+        setPlaces(response.data.results);
+      });
+    }
+   
+  }, [coordinates, userCategory]);
 
   return (
     <div className="App">
-      {/* <h1>HELLO WORLD!</h1> */}
       <Form
         receivedUserInput={receivedUserInput}
         receivedUserCategory={receivedUserCategory}
-        circCoordinates={`${coordinates.lng}, ${coordinates.lat}, 1000`}
-        coordinates={[coordinates.lat, coordinates.lng]}
+        places={[...places]}
+        coordinates={[...coordinates]}
       />
     </div>
   );
