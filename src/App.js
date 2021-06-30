@@ -10,10 +10,9 @@ function App() {
   const [places, setPlaces] = useState([]);
  
 
-  const geoCode = 'http://www.mapquestapi.com/geocoding/v1/address';
-  // const searchApi = 'http://www.mapquestapi.com/search/v2/search';
+  const geoCode = 'https://www.mapquestapi.com/geocoding/v1/address';
   const placeSearch = 'https://www.mapquestapi.com/search/v4/place';
-  const alternateRoute = 'http://www.mapquestapi.com/directions/v2/alternateroutes';
+  
 
   const receivedUserInput = (loc) => {
     setUserLocation(loc);
@@ -77,12 +76,6 @@ function App() {
     }
    
   }, [coordinates, userCategory]);
-
-
-  
-
-
-
 
 
 
