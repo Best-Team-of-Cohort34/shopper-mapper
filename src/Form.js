@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import axios from 'axios';
+// import axios from 'axios';
 // import L from 'leaflet';
 // import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; 
 // Re-uses images from ~leaflet package
-import * as L from 'leaflet';
+// import * as L from 'leaflet';
 import 'leaflet-defaulticon-compatibility';
+
 
 
 // delete L.Icon.Default.prototype._getIconUrl;
@@ -22,6 +23,7 @@ import 'leaflet-defaulticon-compatibility';
 //   iconSize: [30, 42],
 //   iconAnchor: [15, 42]
 // });
+
 
 const Form = (props) => {
   const [userPrompt, setUserPrompt] = useState('');
@@ -50,7 +52,7 @@ const Form = (props) => {
     props.receivedUserInput(location);
     props.receivedUserCategory(category);
   };
-  
+
 
   // rendering pages
   if (!submitted) {
@@ -93,10 +95,11 @@ const Form = (props) => {
                 defaultValue=""
               >
                 <option value="" disabled>
-                  Where do you want to go?{' '}
+                  Where do you want to go?{" "}
                 </option>
-                <option value="coffee shops">coffee shops</option>
-                <option value="restaurants">restaurants</option>
+                <option value="Groceries">Groceries</option>
+                <option value="coffee shops">Coffee shops</option>
+                <option value="restaurants">Restaurants</option>
               </select>
               <button className="formButton" onClick={storedUserInput}>
                 Take me there!
@@ -145,7 +148,7 @@ const Form = (props) => {
                   src="./map-marker-icon.png"
                 >
                   <Popup>
-                    <h3>This is where you are</h3>
+                    <h3>{item.name}</h3>
                   </Popup>
                 </Marker>
               );

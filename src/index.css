@@ -282,6 +282,7 @@ h1 {
   background-image: linear-gradient(rgba(2, 2, 2, 0.363), rgba(0, 0, 0, 0.438)),
     url('https://www.theladders.com/wp-content/uploads/food-191008.jpg');
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
 }
@@ -375,17 +376,17 @@ select {
   max-height: 75vh;
   max-width: 70%;
   margin: 0 auto;
-  min-height: 270px;
+  min-height: 370px;
   min-width: 270px;
   border-radius: 30px;
   box-shadow: 0 0 10px #6f6f6f;
   /* visibility: hidden; */
-  position: fixed;
+  /* position: relative;
   top: 0;
   right: 0;
   bottom: 0;
-  left: 0;
-  margin-top: 82px;
+  left: 0; */
+  margin-top: 500px;
 }
 
 /* MEDIA QUERIES */
@@ -406,4 +407,8 @@ select {
   h1 {
     font-size: 1rem;
   }
+
+  .wrapper {
+    width: 95%;
+  } 
 }
