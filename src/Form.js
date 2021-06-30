@@ -4,7 +4,8 @@ import axios from 'axios';
 // import L from 'leaflet';
 // import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; // Re-uses images from ~leaflet package
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; 
+// Re-uses images from ~leaflet package
 import * as L from 'leaflet';
 import 'leaflet-defaulticon-compatibility';
 
@@ -27,7 +28,7 @@ const Form = (props) => {
   const [userPrompt, setUserPrompt] = useState('');
   const [userCategoryForm, setUserCategoryForm] = useState('restaurant');
   const [locationCircArr, setlocationCircArr] = useState(
-    '-79.397947, 43.648434, 1000'
+    "-79.397947, 43.648434, 1000"
   );
   // const [locationArr, setLocationArr] = useState('43.648434, -79.397947');
   const [places, setPlaces] = useState([]);
