@@ -1,25 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import axios from 'axios';
-// import L from 'leaflet';
-// import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; // Re-uses images from ~leaflet package
-import * as L from 'leaflet';
 import 'leaflet-defaulticon-compatibility';
-
-// delete L.Icon.Default.prototype._getIconUrl;
-
-// L.Icon.Default.mergeOptions({
-//     iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-//     iconUrl: require('leaflet/dist/images/marker-icon.png'),
-//     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
-// });
-// const icon = L.Icon({
-//   iconUrl: require('../node_modules/leaflet/dist/images/marker-icon.png'),
-//   iconSize: [30, 42],
-//   iconAnchor: [15, 42]
-// });
 
 const Form = (props) => {
   const [userPrompt, setUserPrompt] = useState('');
@@ -89,8 +72,8 @@ const Form = (props) => {
                 <option value="" disabled>
                   Where do you want to go?{' '}
                 </option>
-                <option value="coffee shops">coffee shops</option>
-                <option value="restaurants">restaurants</option>
+                <option value="coffee shops">Coffee shops</option>
+                <option value="restaurants">Restaurants</option>
               </select>
               <button className="formButton" onClick={storedUserInput}>
                 Take me there!
@@ -109,6 +92,32 @@ const Form = (props) => {
           <p>
             shopper <span>mapper</span>
           </p>
+          <div className="mapAndTextContainer">
+            <div className="textContainer">
+              <h3>Title of Location</h3>
+              <p>address skdhoeih qlieheotih</p>
+              <p>duration</p>
+              <h3>Title of Location</h3>
+              <p>address skdhoeih qlieheotih</p>
+              <p>duration</p>
+              <h3>Title of Location</h3>
+              <p>address skdhoeih qlieheotih</p>
+              <p>duration</p>
+              <h3>Title of Location</h3>
+              <p>address skdhoeih qlieheotih</p>
+              <p>duration</p>
+               <h3>Title of Location</h3>
+              <p>address skdhoeih qlieheotih</p>
+              <p>duration</p>
+               <h3>Title of Location</h3>
+              <p>address skdhoeih qlieheotih</p>
+              <p>duration</p>
+               <h3>Title of Location</h3>
+              <p>address skdhoeih qlieheotih</p>
+              <p>duration</p>
+               <h3>Title of Location</h3>
+              <p>address skdhoeih qlieheotih</p>
+              <p>duration</p>
 
           <Map
             className="leaflet-container"
@@ -147,6 +156,43 @@ const Form = (props) => {
             })}
           </Map>
         </div>
+
+          <Map
+            className="leaflet-container"
+            center={[props.coordinates[1], props.coordinates[0]]}
+            zoom={15}
+          >
+            <TileLayer
+              url={
+                'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
+              }
+            />
+            {props.places.map((item) => {
+              console.log(item);
+              console.log(props.coordinates[0]);
+              // console.log(item.id);
+              // console.log(
+              //   item.place.geometry.coordinates[0],
+              //   item.place.geometry.coordinates[1]
+              // );
+              return (
+                <Marker
+                  key={item.id}
+                  position={[
+                    item.place.geometry.coordinates[1],
+                    item.place.geometry.coordinates[0],
+                  ]}
+                  src="./map-marker-icon.png"
+                >
+                  <Popup>
+                    <h3>{item.name}</h3>
+                    <button>click here for directions</button>
+                  </Popup>
+                </Marker>
+              );
+            })}
+          </Map>
+        </div>
       </header>
     );
   }
@@ -155,3 +201,4 @@ const Form = (props) => {
 export default Form;
 
 // 5 Glen Cameron Rd Thornhill, ON
+// 251 jarvis street toronto

@@ -9,8 +9,7 @@ function App() {
   const [userCategory, setUserCategory] = useState('coffee shops');
   const [places, setPlaces] = useState([]);
 
-  const geoCode = 'http://www.mapquestapi.com/geocoding/v1/address';
-  const searchApi = 'http://www.mapquestapi.com/search/v2/search';
+  const geoCode = 'https://www.mapquestapi.com/geocoding/v1/address';
   const placeSearch = 'https://www.mapquestapi.com/search/v4/place';
 
   const receivedUserInput = (loc) => {
