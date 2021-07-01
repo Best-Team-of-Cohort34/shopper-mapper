@@ -21,7 +21,6 @@ const Form = (props) => {
   const handleSelection = (event) => {
     event.preventDefault();
     setUserCategoryForm(event.target.value);
-    // setlocationCircArr(props.circCoordinates);
   };
   const storedUserInput = (event) => {
     event.preventDefault();
@@ -31,7 +30,12 @@ const Form = (props) => {
     props.receivedUserInput(location);
     props.receivedUserCategory(category);
   };
-  
+
+  const mapOnOff = (event) => {
+    event.preventDefault();
+    setSubmitted(false);
+  }
+
 
   // rendering pages
   if (!submitted) {
@@ -74,15 +78,19 @@ const Form = (props) => {
                 defaultValue=""
               >
                 <option value="" disabled>
-                  Where do you want to go?{' '}
+                  Where do you want to go?{" "}
                 </option>
-                <option value="coffee shops">Coffee Shops</option>
+                <option value="groceries">Grocery Stores</option>
+                <option value="pharmacies">Pharmacies</option>
+                <option value="coffee-shops">Coffee Shops</option>
+                <option value="bakery">Bakeries</option>
                 <option value="restaurants">Restaurants</option>
+                <option value="bars">Bars & Pubs</option>
               </select>
               <button className="formButton" onClick={storedUserInput}>
                 Take me there!
               </button>
-              {/* <button type="submit">Submit✨</button> */}
+              
             </form>
           </div>
         </header>
@@ -96,6 +104,14 @@ const Form = (props) => {
           <p>
             shopper <span>mapper</span>
           </p>
+        </div>  
+
+        <div>
+          <button onClick={mapOnOff}>
+            <i class="far fa-times-circle"></i>
+          </button>
+        </div>
+
           <div className="mapAndTextContainer">
             <div className="textContainer">
               {
@@ -104,7 +120,6 @@ const Form = (props) => {
                   <ol>
                     <li key={item.id}>
                       <h3>{item.name}</h3>
-                      {/* <h3>{item.displayString.slice(0, 32)}</h3> */}
                       <p>{item.place.properties.street}, <span className="city">{item.place.properties.city},</span> <span className="province">{item.place.properties.stateCode}</span></p>
                     </li>
                   </ol>
@@ -131,6 +146,7 @@ const Form = (props) => {
                 //   item.place.geometry.coordinates[1]
                 // );
                 return (
+                  <>
                   <Marker
                     key={item.id}
                     position={[
@@ -144,12 +160,11 @@ const Form = (props) => {
                       <button>click here for directions</button>
                     </Popup>
                   </Marker>
-                )
-              })}
-            </Map>
-          </div>
-          {/* <i class="far fa-window-close"></i> */}
-          </div>
+                </>
+              );
+            })}
+          </Map>
+        </div>
       </header>
     );
   }
@@ -157,4 +172,3 @@ const Form = (props) => {
 
 export default Form;
 
-// 5 Glen Cameron Rd Thornhill, ON
