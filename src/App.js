@@ -70,12 +70,8 @@ function App() {
         
         console.log(response);
         setPlaces(response.data.results);
-        // divide the length of the array in 2 
-        // Math.floor = highlighted result 
-        // use the spread operator and then add the key value to the response
       });
     }
-   
   }, [coordinates, userCategory]);
 
 

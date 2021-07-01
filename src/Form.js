@@ -115,11 +115,22 @@ const Form = (props) => {
           <div className="mapAndTextContainer">
             <div className="textContainer">
               {
-                props.places.map((item) => {
+                props.places.map((item, index) => {
+                  console.log(props.places);
+                  const middle = Math.floor(props.places.length / 2);
+                  console.log(middle);
                 return (
+                  // ternary in h3, 
+                  // that says item.name ? middlePlace : 
                   <ol>
                     <li key={item.id}>
-                      <h3>{item.name}</h3>
+                      <h3 
+                      style={index === middle ? 
+                        {background: "#ff9d7f"} : 
+                        {background: "transparent"}}
+                      
+                        >
+                        {item.name}</h3>
                       <p>{item.place.properties.street}, <span className="city">{item.place.properties.city},</span> <span className="province">{item.place.properties.stateCode}</span></p>
                     </li>
                   </ol>
@@ -157,7 +168,8 @@ const Form = (props) => {
                   >
                     <Popup>
                       <h3>{item.name}</h3>
-                      <button>click here for directions</button>
+                      <p className="popupText">{item.place.properties.street}, <span className="city">{item.place.properties.city},</span> <span className="province">{item.place.properties.stateCode}</span></p>
+                      <button className="popupButton">get directions</button>
                     </Popup>
                   </Marker>
                 </>
