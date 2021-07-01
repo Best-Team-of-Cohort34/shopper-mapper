@@ -468,6 +468,11 @@ select {
   align-items: left;
 }
 
+.leaflet-popup-content p {
+  color: black;
+  font-family: 'Barlow', sans-serif;
+}
+
 .popupText {
   font-size: 0.8rem;
 }
