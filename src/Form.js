@@ -115,83 +115,13 @@ const Form = (props) => {
             <p>
               shopper <span>mapper</span>
             </p>
-            {/* <div>
-              <button onClick={mapOnOff}>
-              <i class="far fa-times-circle"></i>
-              </button>
-            </div> */}
+           
             <div className="mapAndTextContainer">
-              <div className="textContainer">
-                {
-                props.places.map((item, index) => {
-                  console.log(props.places);
-                  const middle = Math.floor(props.places.length / 2);
-                  console.log(middle);
-                return (
-                  // ternary in h3, 
-                  // that says item.name ? middlePlace : 
-                  <ol>
-                    <li key={item.id}>
-                      <h3 
-                      style={index === middle ? 
-                        {background: "#ff9d7f"} : 
-                        {background: "transparent"}}
-                      
-                        >
-                        {item.name}</h3>
-                      <p>{item.place.properties.street}, <span className="city">{item.place.properties.city},</span> <span className="province">{item.place.properties.stateCode}</span></p>
-                    </li>
-                  </ol>
-                )
-              })}
               <Directions
                   userCoordinates={[props.coordinates[1], props.coordinates[0]]}
                   destCoordinates={[...destCoordinates]}
-                  // placeCoordinates={[
-                  //   props.places.geometry.coordinates[1],
-                  //   props.places.geometry.coordinates[0],
-                  // ]}
-                />
-            </div>
-              <Map
-                className="leaflet-container"
-                center={[props.coordinates[1], props.coordinates[0]]}
-                zoom={15}
-              >
-                <TileLayer
-                  url={
-                    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
-                  }
-                />
-                {props.places.map((item) => {
-                  // console.log(item);
-                  // console.log(props.coordinates[0]);
-                  // console.log(item.id);
-                  // console.log(
-                  //   item.place.geometry.coordinates[0],
-                  //   item.place.geometry.coordinates[1]
-                  // );
-                  return (
-                    <Marker
-                      key={item.id}
-                      position={[
-                        item.place.geometry.coordinates[1],
-                        item.place.geometry.coordinates[0],
-                      ]}
-                      src="./map-marker-icon.png"
-                    >
-                      <Popup>
-                        <h3>{item.name}</h3>
-                      <p className="popupText">{item.place.properties.street}, <span className="city">{item.place.properties.city},</span> <span className="province">{item.place.properties.stateCode}</span></p>
-                        <button className="popupButton" onClick={() => test([item.place.geometry.coordinates[1],item.place.geometry.coordinates[0]])}>
-                          click here for directions
-                        </button>
-                      </Popup>
-                    </Marker>
-                  );
-                })}
-              </Map>
-              {/* <Directions /> */}
+              />
+                
             </div>
           </div>
         </header>
