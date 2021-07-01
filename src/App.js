@@ -41,8 +41,6 @@ function App() {
   }, [userLocation]);
   
 
- 
-
   useEffect(() => {
     console.log("coordinates state value before initializing location and circle in placeapi useeffect")
     console.log(coordinates);
