@@ -41,7 +41,7 @@ const Form = (props) => {
   };
   const mapOnOff = (event) => {
     event.preventDefault();
-     setSubmitted(false);
+    setSubmitted(false);
   }
 
 
@@ -88,12 +88,11 @@ const Form = (props) => {
                 <option value="" disabled>
                   Where do you want to go?{" "}
                 </option>
-                <option value="groceries">Groceries</option>
+                <option value="groceries">Grocery Stores</option>
                 <option value="pharmacies">Pharmacies</option>
                 <option value="coffee-shops">Coffee Shops</option>
-                <option value="bakery">Bakery</option>
+                <option value="bakery">Bakeries</option>
                 <option value="restaurants">Restaurants</option>
-
                 <option value="bars">Bars & Pubs</option>
               </select>
               <button className="formButton" onClick={storedUserInput}>
@@ -116,12 +115,36 @@ const Form = (props) => {
             <p>
               shopper <span>mapper</span>
             </p>
+            {/* <div>
+              <button onClick={mapOnOff}>
+              <i class="far fa-times-circle"></i>
+              </button>
+            </div> */}
             <div className="mapAndTextContainer">
               <div className="textContainer">
-                {props.places.forEach((item) => {
-                  console.log(item.place.geometry.coordinates);
-                })}
-                <Directions
+                {
+                props.places.map((item, index) => {
+                  console.log(props.places);
+                  const middle = Math.floor(props.places.length / 2);
+                  console.log(middle);
+                return (
+                  // ternary in h3, 
+                  // that says item.name ? middlePlace : 
+                  <ol>
+                    <li key={item.id}>
+                      <h3 
+                      style={index === middle ? 
+                        {background: "#ff9d7f"} : 
+                        {background: "transparent"}}
+                      
+                        >
+                        {item.name}</h3>
+                      <p>{item.place.properties.street}, <span className="city">{item.place.properties.city},</span> <span className="province">{item.place.properties.stateCode}</span></p>
+                    </li>
+                  </ol>
+                )
+              })}
+              <Directions
                   userCoordinates={[props.coordinates[1], props.coordinates[0]]}
                   destCoordinates={[...destCoordinates]}
                   // placeCoordinates={[
@@ -129,7 +152,7 @@ const Form = (props) => {
                   //   props.places.geometry.coordinates[0],
                   // ]}
                 />
-              </div>
+            </div>
               <Map
                 className="leaflet-container"
                 center={[props.coordinates[1], props.coordinates[0]]}
@@ -159,7 +182,8 @@ const Form = (props) => {
                     >
                       <Popup>
                         <h3>{item.name}</h3>
-                        <button onClick={() => test([item.place.geometry.coordinates[1],item.place.geometry.coordinates[0]])}>
+                      <p className="popupText">{item.place.properties.street}, <span className="city">{item.place.properties.city},</span> <span className="province">{item.place.properties.stateCode}</span></p>
+                        <button className="popupButton" onClick={() => test([item.place.geometry.coordinates[1],item.place.geometry.coordinates[0]])}>
                           click here for directions
                         </button>
                       </Popup>
@@ -180,32 +204,35 @@ const Form = (props) => {
             <p>
               shopper <span>mapper</span>
             </p>
+            <div>
+              <button onClick={mapOnOff}>
+              <i class="far fa-times-circle"></i>
+              </button>
+            </div>
             <div className="mapAndTextContainer">
               <div className="textContainer">
-                <h3>Title of Location</h3>
-                <p>address skdhoeih qlieheotih</p>
-                <p>duration</p>
-                <h3>Title of Location</h3>
-                <p>address skdhoeih qlieheotih</p>
-                <p>duration</p>
-                <h3>Title of Location</h3>
-                <p>address skdhoeih qlieheotih</p>
-                <p>duration</p>
-                <h3>Title of Location</h3>
-                <p>address skdhoeih qlieheotih</p>
-                <p>duration</p>
-                <h3>Title of Location</h3>
-                <p>address skdhoeih qlieheotih</p>
-                <p>duration</p>
-                <h3>Title of Location</h3>
-                <p>address skdhoeih qlieheotih</p>
-                <p>duration</p>
-                <h3>Title of Location</h3>
-                <p>address skdhoeih qlieheotih</p>
-                <p>duration</p>
-                <h3>Title of Location</h3>
-                <p>address skdhoeih qlieheotih</p>
-                <p>duration</p>
+                {
+                props.places.map((item, index) => {
+                  console.log(props.places);
+                  const middle = Math.floor(props.places.length / 2);
+                  console.log(middle);
+                return (
+                  // ternary in h3, 
+                  // that says item.name ? middlePlace : 
+                  <ol>
+                    <li key={item.id}>
+                      <h3 
+                      style={index === middle ? 
+                        {background: "#ff9d7f"} : 
+                        {background: "transparent"}}
+                      
+                        >
+                        {item.name}</h3>
+                      <p>{item.place.properties.street}, <span className="city">{item.place.properties.city},</span> <span className="province">{item.place.properties.stateCode}</span></p>
+                    </li>
+                  </ol>
+                )
+              })}
               </div>
               <Map
                 className="leaflet-container"
@@ -235,8 +262,9 @@ const Form = (props) => {
                       src="./map-marker-icon.png"
                     >
                       <Popup>
-                        <h3>{item.name}</h3>
-                        <button onClick={() => test([item.place.geometry.coordinates[1],item.place.geometry.coordinates[0]])}>
+                      <h3>{item.name}</h3>
+                      <p className="popupText">{item.place.properties.street}, <span className="city">{item.place.properties.city},</span> <span className="province">{item.place.properties.stateCode}</span></p>
+                        <button className="popupButton" onClick={() => test([item.place.geometry.coordinates[1],item.place.geometry.coordinates[0]])}>
                           click here for directions
                         </button>
                       </Popup>

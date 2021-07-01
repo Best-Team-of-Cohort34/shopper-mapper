@@ -248,10 +248,15 @@ h5,
 h6,
 p,
 ul,
+ol,
 li {
   margin: 0;
   padding: 0;
   font-size: 1rem;
+}
+
+ol {
+  list-style-type: none;
 }
 
 img {
@@ -353,7 +358,7 @@ select {
   padding-left: 20px;
   padding-top: 3px;
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .formButton {
@@ -363,7 +368,7 @@ select {
   border: none;
   height: 40px;
   border-radius: 20px;
-  box-shadow: 0px 7.5px 0px rgba(99, 90, 90, 0.9);
+  box-shadow: 0px 3px 0px rgba(255, 255, 255, 0.993);
   width: 220px;
   padding-bottom: 3px;
   transition: 0.3s;
@@ -374,10 +379,10 @@ select {
 
 .formButton:hover,
 .formButton:active {
-  background: #94b143;
+  background: #c2db81;
   cursor: pointer;
-  top: 5px;
-	box-shadow: 0px 2px 0px rgba(251, 248, 248, 0.85);
+  top: 3px;
+	box-shadow: 0px 2px 0px rgba(99, 90, 90, 0.9);
 }
 
 /* MAP */
@@ -404,35 +409,40 @@ select {
 }
 
 .textContainer {
-  
   max-width: 35%;
   width: 50%;
-  
   border-radius: 30px 0 0 30px;
   padding: 20px;
   background: white;
   overflow: scroll;
-  
 }
 
 .textContainer h3 {
-  padding-top: 20px;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   cursor: pointer;
 }
 
 .textContainer p {
   color: black;
-  font-family: "Barlow", serif;
-  font-size: 1rem;
+  font-family: 'Barlow', serif;
+  font-size: 0.9rem;
+  padding-bottom: 20px;
+  line-height: 1.5;
+}
+
+.textContainer p span {
+  display: inline;
+  font-style: normal;
+  /* line-height: 1.5; */
 }
 
 .fa-times-circle {
   z-index: 100;
   position: absolute;
-  right: 50px;
-  top: 80px;
-  font-size: 2rem;
+  right: 65px;
+  top: 85px;
+  font-size: 1.5rem;
+  transition: 0.2s;
   
 }
 
@@ -442,7 +452,6 @@ select {
 }
 
 .leaflet-container {
-  
   width: 65%;
   height: 100%;
   max-height: 100%;
@@ -451,6 +460,40 @@ select {
   border-radius: 0 30px 30px 0;
   box-shadow: 0 0 10px #6f6f6f;
   margin: 0;
+}
+
+.leaflet-popup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.leaflet-popup-content p {
+  color: black;
+  font-family: 'Barlow', sans-serif;
+}
+
+.popupText {
+  font-size: 0.8rem;
+}
+
+.popupButton {
+  background: #5bc6ff4b;
+  border: none;
+  /* trbl */
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  /* margin-top: 10px; */
+  font-family: 'Barlow', sans-serif;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.popupButton:hover {
+  background:#5bc6ff9f;
 }
 
 
