@@ -7,7 +7,7 @@ import 'leaflet-defaulticon-compatibility';
 const Form = (props) => {
   const [userPrompt, setUserPrompt] = useState('');
   const [userCategoryForm, setUserCategoryForm] = useState('restaurant');
-  const [submitted, SetSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   
   
   let location = '';
@@ -26,7 +26,7 @@ const Form = (props) => {
   const storedUserInput = (event) => {
     event.preventDefault();
     location = userPrompt;
-    SetSubmitted(true);
+    setSubmitted(true);
     category = userCategoryForm;
     props.receivedUserInput(location);
     props.receivedUserCategory(category);
@@ -98,31 +98,18 @@ const Form = (props) => {
           </p>
           <div className="mapAndTextContainer">
             <div className="textContainer">
-              <h3>Title of Location</h3>
-              <p>address skdhoeih qlieheotih</p>
-              <p>duration</p>
-              <h3>Title of Location</h3>
-              <p>address skdhoeih qlieheotih</p>
-              <p>duration</p>
-              <h3>Title of Location</h3>
-              <p>address skdhoeih qlieheotih</p>
-              <p>duration</p>
-              <h3>Title of Location</h3>
-              <p>address skdhoeih qlieheotih</p>
-              <p>duration</p>
-               <h3>Title of Location</h3>
-              <p>address skdhoeih qlieheotih</p>
-              <p>duration</p>
-               <h3>Title of Location</h3>
-              <p>address skdhoeih qlieheotih</p>
-              <p>duration</p>
-               <h3>Title of Location</h3>
-              <p>address skdhoeih qlieheotih</p>
-              <p>duration</p>
-               <h3>Title of Location</h3>
-              <p>address skdhoeih qlieheotih</p>
-              <p>duration</p>
-
+              {
+                props.places.map((item) => {
+                return (
+                  <ol>
+                    <li key={item.id}>
+                      <h3>{item.name}</h3>
+                      {/* <h3>{item.displayString.slice(0, 32)}</h3> */}
+                      <p>{item.place.properties.street}, <span className="city">{item.place.properties.city},</span> <span className="province">{item.place.properties.stateCode}</span></p>
+                    </li>
+                  </ol>
+                )
+              })}
             </div>
             <Map
               className="leaflet-container"
