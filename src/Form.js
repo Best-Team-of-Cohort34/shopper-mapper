@@ -1,22 +1,19 @@
-import { useState } from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; // Re-uses images from ~leaflet package
-import 'leaflet-defaulticon-compatibility';
+import { useState } from "react";
+import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css"; // Re-uses images from ~leaflet package
+import "leaflet-defaulticon-compatibility";
 
 const Form = (props) => {
-  const [userPrompt, setUserPrompt] = useState('');
-  const [userCategoryForm, setUserCategoryForm] = useState('restaurant');
+  const [userPrompt, setUserPrompt] = useState("");
+  const [userCategoryForm, setUserCategoryForm] = useState("restaurant");
   const [submitted, setSubmitted] = useState(false);
-  
-  
-  let location = '';
-  let category = '';
-  
+
+  let location = "";
+  let category = "";
 
   const userInput = (event) => {
     setUserPrompt(event.target.value);
-    
   };
   const handleSelection = (event) => {
     event.preventDefault();
@@ -33,9 +30,8 @@ const Form = (props) => {
 
   const mapOnOff = (event) => {
     event.preventDefault();
-     setSubmitted(false);
-  }
-
+    setSubmitted(false);
+  };
 
   // rendering pages
   if (!submitted) {
@@ -53,7 +49,8 @@ const Form = (props) => {
               <h1>
                 Type in your current address and choose a category of place you
                 would like to go. We'll return suggestions for every instance of
-                that category within a 10km radius from your location!
+                that category within 10km radius from your
+                location!
               </h1>
             </div>
             <form action="submit">
@@ -80,24 +77,23 @@ const Form = (props) => {
                 <option value="" disabled>
                   Where do you want to go?{" "}
                 </option>
-                <option value="groceries">Groceries</option>
-                <option value="pharmacies">Pharmacies</option>
-                <option value="coffee-shops">Coffee Shops</option>
-                <option value="bakery">Bakery</option>
-                <option value="restaurants">Restaurants</option>
-
-                <option value="bars">Bars & Pubs</option>
+                <option value="groceries">🛒 Groceries</option>
+                <option value="pharmacies">💊 Pharmacies</option>
+                <option value="coffee-shops">☕️ Coffee Shops</option>
+                <option value="bakery">🍰 Bakery</option>
+                <option value="restaurants">🍽 Restaurants</option>
+                <option value="bars">🍺 Bars & Pubs</option>
               </select>
               <button className="formButton" onClick={storedUserInput}>
                 Take me there!
               </button>
-              
             </form>
           </div>
+
         </header>
       </>
     );
-  } else  {
+  } else {
     return (
       <header className="formHeader">
         <div className="logo">
@@ -160,7 +156,7 @@ const Form = (props) => {
             {props.places.map((item) => {
               console.log(item);
               console.log(props.coordinates[0]);
-              
+
               return (
                 <>
                   <Marker
@@ -187,4 +183,3 @@ const Form = (props) => {
 };
 
 export default Form;
-
