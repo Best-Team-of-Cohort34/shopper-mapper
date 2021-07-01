@@ -10,6 +10,7 @@ const Form = (props) => {
   const [userCategoryForm, setUserCategoryForm] = useState('restaurant');
   const [submitted, setSubmitted] = useState(false);
   const [clickMarker, setClickMarker] = useState(false);
+  const [destCoordinates, setDestCoordinates] = useState([]);
 
   let location = '';
   let category = '';
@@ -31,9 +32,10 @@ const Form = (props) => {
     props.receivedUserCategory(category);
   };
 
-  const test = () => {
+  const test = (destArray) => {
     console.log('clicked');
     setClickMarker(true);
+    setDestCoordinates(destArray);
     console.log(clickMarker);
   };
 
@@ -110,6 +112,7 @@ const Form = (props) => {
                 })}
                 <Directions
                   userCoordinates={[props.coordinates[1], props.coordinates[0]]}
+                  destCoordinates={[...destCoordinates]}
                   // placeCoordinates={[
                   //   props.places.geometry.coordinates[1],
                   //   props.places.geometry.coordinates[0],
@@ -145,7 +148,7 @@ const Form = (props) => {
                     >
                       <Popup>
                         <h3>{item.name}</h3>
-                        <button onClick={() => test()}>
+                        <button onClick={() => test([item.place.geometry.coordinates[1],item.place.geometry.coordinates[0]])}>
                           click here for directions
                         </button>
                       </Popup>
@@ -222,7 +225,7 @@ const Form = (props) => {
                     >
                       <Popup>
                         <h3>{item.name}</h3>
-                        <button onClick={() => test()}>
+                        <button onClick={() => test([item.place.geometry.coordinates[1],item.place.geometry.coordinates[0]])}>
                           click here for directions
                         </button>
                       </Popup>
