@@ -12,6 +12,8 @@ const Form = (props) => {
   const [clickMarker, setClickMarker] = useState(false);
   const [destCoordinates, setDestCoordinates] = useState([]);
 
+  
+  
   let location = '';
   let category = '';
 
@@ -21,7 +23,6 @@ const Form = (props) => {
   const handleSelection = (event) => {
     event.preventDefault();
     setUserCategoryForm(event.target.value);
-    // setlocationCircArr(props.circCoordinates);
   };
   const storedUserInput = (event) => {
     event.preventDefault();
@@ -38,6 +39,11 @@ const Form = (props) => {
     setDestCoordinates(destArray);
     console.log(clickMarker);
   };
+  const mapOnOff = (event) => {
+    event.preventDefault();
+     setSubmitted(false);
+  }
+
 
   // rendering pages
   if (!submitted) {
@@ -80,15 +86,20 @@ const Form = (props) => {
                 defaultValue=""
               >
                 <option value="" disabled>
-                  Where do you want to go?{' '}
+                  Where do you want to go?{" "}
                 </option>
-                <option value="coffee shops">Coffee shops</option>
+                <option value="groceries">Groceries</option>
+                <option value="pharmacies">Pharmacies</option>
+                <option value="coffee-shops">Coffee Shops</option>
+                <option value="bakery">Bakery</option>
                 <option value="restaurants">Restaurants</option>
+
+                <option value="bars">Bars & Pubs</option>
               </select>
               <button className="formButton" onClick={storedUserInput}>
                 Take me there!
               </button>
-              {/* <button type="submit">Submit✨</button> */}
+              
             </form>
           </div>
         </header>
@@ -254,7 +265,3 @@ const Form = (props) => {
 
 export default Form;
 
-{
-  /* // 5 Glen Cameron Rd Thornhill, ON
-// 251 jarvis street toronto */
-}

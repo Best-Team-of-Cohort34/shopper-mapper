@@ -11,6 +11,7 @@ function App() {
 
   const geoCode = 'https://www.mapquestapi.com/geocoding/v1/address';
   const placeSearch = 'https://www.mapquestapi.com/search/v4/place';
+  
 
   const receivedUserInput = (loc) => {
     setUserLocation(loc);
@@ -36,6 +37,7 @@ function App() {
       setCoordinates(newArr);
     });
   }, [userLocation]);
+  
 
   useEffect(() => {
     console.log(
@@ -70,6 +72,8 @@ function App() {
       });
     }
   }, [coordinates, userCategory]);
+
+
 
   return (
     <div className="App">
