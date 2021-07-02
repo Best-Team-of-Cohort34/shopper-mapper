@@ -7,7 +7,7 @@ function Directions(props) {
   const directionsApi = 'http://www.mapquestapi.com/directions/v2/route';
 
   console.log(props.userCoordinates);
-  console.log(props.destCoordinates);
+  // console.log(props.destCoordinates);
   useEffect(() => {
     axios({
       url: directionsApi,
@@ -46,27 +46,20 @@ function Directions(props) {
   //     console.log(data.data);
   //     // setMapImg(data.data);
   //   })
-      
-      
-      
-   
+
   // },[]);
-
-
 
   return (
     <div>
-
-      
       <div className="textContainer">
         <h3>Directions!!!</h3>
         <p>narrative</p>
       </div>
       <div className="leaflet-container">
-        <img src={`https://www.mapquestapi.com/staticmap/v5/map?key=0GC7xtayS34G212Wj5J2TyiN11A1jK5G&start=${props.userCoordinates[0]},${props.userCoordinates[1]}&end=${props.destCoordinates[0]},${props.destCoordinates[1]}&zoom=15&size=500,400@2x`} />
-
+        <img
+          src={`https://www.mapquestapi.com/staticmap/v5/map?key=0GC7xtayS34G212Wj5J2TyiN11A1jK5G&start=${props.userCoordinates[0]},${props.userCoordinates[1]}&end=${props.destCoordinates[0]},${props.destCoordinates[1]}&zoom=15&size=500,400@2x`}
+        />
       </div>
-
     </div>
   );
 }
