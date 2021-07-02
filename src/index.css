@@ -519,6 +519,12 @@ img.mapDirections {
 
 /* MEDIA QUERIES */
 
+@media (max-width: 1000px) {
+  .fa-times-circle {
+    right: 43px;
+  }
+}
+
 @media (max-width: 840px) {
   h1 {
     width: 88%;
@@ -570,14 +576,35 @@ img.mapDirections {
   }
 }
 
+@media (max-width: 600px) {
+  .fa-times-circle {
+    right: 115px;
+  }
+}
+
 @media (max-width: 500px) {
   h1 {
     font-size: 1rem;
   }
+  .fa-times-circle {
+    right: 95px;
+  }
 }
 
-@media (max-width: 490px) {
+@media (max-width: 410px) {
   .fa-times-circle {
-    right: 25px;
+    right: 68px;
+  }
+}
+
+@media (max-width: 355px) {
+  .fa-times-circle {
+    right: 50px;
+  }
+}
+
+@media (max-width: 330px) {
+  .fa-times-circle {
+    right: 33px;
   }
 }

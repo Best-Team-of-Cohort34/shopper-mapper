@@ -53,7 +53,7 @@ function Directions(props) {
 
     </div>
     <div className="leaflet-container flex-leaflet-container">
-      <img src={`https://www.mapquestapi.com/staticmap/v5/map?key=A2gQgxxrU94wUIpgIn5Q6XwhGSs6sIjA&start=${props.userCoordinates[0]},${props.userCoordinates[1]}&end=${props.destCoordinates[0]},${props.destCoordinates[1]}&zoom=16&size=1000,700@2x`} className="mapDirections"/>
+      <img src={`https://www.mapquestapi.com/staticmap/v5/map?key=A2gQgxxrU94wUIpgIn5Q6XwhGSs6sIjA&start=${props.userCoordinates[0]},${props.userCoordinates[1]}&end=${props.destCoordinates[0]},${props.destCoordinates[1]}&zoom=16&size=1000,700@2x`} className="mapDirections" alt='map images'/>
     </div>
   </div>
   </>
