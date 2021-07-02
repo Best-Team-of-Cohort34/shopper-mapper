@@ -6,46 +6,61 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import 'leaflet-defaulticon-compatibility';
 
 const Form = (props) => {
+  // user location input 
   const [userPrompt, setUserPrompt] = useState('');
+  // user category input, set to default value
   const [userCategoryForm, setUserCategoryForm] = useState('restaurant');
+  // on submit state/click
   const [submitted, setSubmitted] = useState(false);
+  // map marker click state
   const [clickMarker, setClickMarker] = useState(false);
+  // setting the value of the coordinates for the destination selected by user
   const [destCoordinates, setDestCoordinates] = useState([]);
 
-  
-  
   let location = '';
   let category = '';
 
   const userInput = (event) => {
     setUserPrompt(event.target.value);
   };
+
   const handleSelection = (event) => {
     event.preventDefault();
     setUserCategoryForm(event.target.value);
   };
+
   const storedUserInput = (event) => {
     event.preventDefault();
-    location = userPrompt;
-    setSubmitted(true);
-    category = userCategoryForm;
-    props.receivedUserInput(location);
-    props.receivedUserCategory(category);
+    if (userPrompt === '') {
+      // error handling
+      alert('please enter address');
+    } else {
+      location = userPrompt;
+      setSubmitted(true);
+      category = userCategoryForm;
+      props.receivedUserInput(location);
+      props.receivedUserCategory(category);
+    }
   };
 
+  // function that is called when the marker is clicked
   const test = (destArray) => {
-    console.log('clicked');
     setClickMarker(true);
     setDestCoordinates(destArray);
-    console.log(clickMarker);
   };
+
+  // toggling the state of the X button on the map
+  // resetting the state of the marker click to false
+  // error handling
   const mapOnOff = (event) => {
     event.preventDefault();
     setSubmitted(false);
+    setClickMarker(false);
   }
 
-
   // rendering pages
+
+  // if submitted = false, only render the header (without displaying the map)
   if (!submitted) {
     return (
       <>
@@ -96,17 +111,15 @@ const Form = (props) => {
                 <option value="bars">🍺 Bars & Pubs</option>
               </select>
               <button className="formButton" onClick={storedUserInput}>
-                Take me there!
+                Show me places!
               </button>
-              
             </form>
           </div>
         </header>
       </>
     );
+    // if submitted = true AND the user has clicked the marker on the map
   } else if (submitted) {
-    // console.log([props.coordinates[1], props.coordinates[0]]);
-
     if (clickMarker) {
       return (
         <header className="formHeader">
@@ -116,93 +129,14 @@ const Form = (props) => {
               shopper <span>mapper</span>
             </p>
           </div>
-            {/* <div className="mapAndTextContainer"> */}
-
-              <Directions
-                userCoordinates={[props.coordinates[1], props.coordinates[0]]}
-                destCoordinates={[...destCoordinates]}
-                // placeCoordinates={[
-                //   props.places.geometry.coordinates[1],
-                //   props.places.geometry.coordinates[0],
-                // ]}
-                mapOnOff={mapOnOff}
-              />
-
-
-          {/* </div> */}
+            <Directions
+              userCoordinates={[props.coordinates[1], props.coordinates[0]]}
+              destCoordinates={[...destCoordinates]}
+              mapOnOff={mapOnOff}
+            />
         </header>
       );
-              {/* <div className="textContainer">
-                {
-                props.places.map((item, index) => {
-                  console.log(props.places);
-                  const middle = Math.floor(props.places.length / 2);
-                  console.log(middle);
-                return (
-                  // ternary in h3, 
-                  // that says item.name ? middlePlace : 
-                  <ol>
-                    <li key={item.id}>
-                      <h3 
-                      style={index === middle ? 
-                        {background: "#ff9d7f"} : 
-                        {background: "transparent"}}
-                      
-                        >
-                        {item.name}</h3>
-                      <p>{item.place.properties.street}, <span className="city">{item.place.properties.city},</span> <span className="province">{item.place.properties.stateCode}</span></p>
-                    </li>
-                  </ol>
-                )
-              })}
-              <Directions
-                  userCoordinates={[props.coordinates[1], props.coordinates[0]]}
-                  destCoordinates={[...destCoordinates]}
-                  // placeCoordinates={[
-                  //   props.places.geometry.coordinates[1],
-                  //   props.places.geometry.coordinates[0],
-                  // ]}
-                />
-            </div>
-              <Map
-                className="leaflet-container"
-                center={[props.coordinates[1], props.coordinates[0]]}
-                zoom={15}
-              >
-                <TileLayer
-                  url={
-                    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
-                  }
-                />
-                {props.places.map((item) => {
-                  // console.log(item);
-                  // console.log(props.coordinates[0]);
-                  // console.log(item.id);
-                  // console.log(
-                  //   item.place.geometry.coordinates[0],
-                  //   item.place.geometry.coordinates[1]
-                  // );
-                  return (
-                    <Marker
-                      key={item.id}
-                      position={[
-                        item.place.geometry.coordinates[1],
-                        item.place.geometry.coordinates[0],
-                      ]}
-                      src="./map-marker-icon.png"
-                    >
-                      <Popup>
-                        <h3>{item.name}</h3>
-                      <p className="popupText">{item.place.properties.street}, <span className="city">{item.place.properties.city},</span> <span className="province">{item.place.properties.stateCode}</span></p>
-                        <button className="popupButton" onClick={() => test([item.place.geometry.coordinates[1],item.place.geometry.coordinates[0]])}>
-                          click here for directions
-                        </button>
-                      </Popup>
-                    </Marker>
-                  );
-                })}
-              </Map>
-              {/* <Directions /> */}
+      // if submitted = true but the user has NOT clicked on the marker on the map
     } else {
       return (
         <header className="formHeader">
@@ -213,55 +147,45 @@ const Form = (props) => {
             </p>
             <div>
               <button className="closeMap" onClick={mapOnOff}>
-              <i class="far fa-times-circle"></i>
+              <i className="far fa-times-circle"></i>
               </button>
             </div>
             <div className="mapAndTextContainer">
               <div className="textContainer">
                 {
                 props.places.map((item, index) => {
-                  console.log(props.places);
+                  // this is the getting the middle location, as per client brief
                   const middle = Math.floor(props.places.length / 2);
-                  console.log(middle);
-                return (
-                  // ternary in h3, 
-                  // that says item.name ? middlePlace : 
-                  <ol>
-                    <li key={index}>
-                      <h3 
-                      style={index === middle ? 
-                        {background: "#ff9d7f"} : 
-                        {background: "transparent"}}
-                      
-                        >
-                        {item.name}</h3>
-                      <p>{item.place.properties.street}, <span className="city">{item.place.properties.city},</span> <span className="province">{item.place.properties.stateCode}</span></p>
-                    </li>
-                  </ol>
-                )
-              })}
-              </div>
-              <Map
-                className="leaflet-container"
-                center={[props.coordinates[1], props.coordinates[0]]}
-                zoom={15}
-              >
+                  return (
+                    <ol>
+                      <li key={index}>
+                        <h3 
+                        // highlighting middle location
+                        style={index === middle ? 
+                          {background: "#ff9d7f"} : 
+                          {background: "transparent"}}
+                          >
+                          {item.name}</h3>
+                        <p>{item.place.properties.street}, <span className="city">{item.place.properties.city},</span> <span className="province">{item.place.properties.stateCode}</span></p>
+                      </li>
+                    </ol>
+                  )
+                })}
+                </div>
+                <Map
+                  className="leaflet-container"
+                  center={[props.coordinates[1], props.coordinates[0]]}
+                  zoom={15}
+                >
                 <TileLayer
                   url={
                     'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
                   }
                 />
-                {props.places.map((item) => {
-                  // console.log(item);
-                  // console.log(props.coordinates[0]);
-                  // console.log(item.id);
-                  // console.log(
-                  //   item.place.geometry.coordinates[0],
-                  //   item.place.geometry.coordinates[1]
-                  // );
+                {props.places.map((item, index) => {
                   return (
                     <Marker
-                      key={item.id}
+                      key={index}
                       position={[
                         item.place.geometry.coordinates[1],
                         item.place.geometry.coordinates[0],
@@ -279,23 +203,12 @@ const Form = (props) => {
                   );
                 })}
               </Map>
-              {/* <Directions /> */}
             </div>
           </div>
         </header>
       );
     }
   }
-  // if (clickMarker) {
-  //   return (
-  //     <div className="textContainer">
-  //       <Directions />
-  //     </div>
-  //   );
-  // }
-  // else if (clickMarker) {
-  //   return <Directions />;
-  // }
 };
 
 export default Form;

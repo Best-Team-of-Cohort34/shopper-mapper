@@ -4,15 +4,18 @@ import { useState, useEffect } from 'react';
 import Form from './Form';
 
 function App() {
+  // getting coordinates from users input location
   const [coordinates, setCoordinates] = useState([]);
+  // getting the value of users locations, set to default value
   const [userLocation, setUserLocation] = useState('Toronto');
+  // getting the value of the category selected by user, set to default value
   const [userCategory, setUserCategory] = useState('coffee shops');
+  // list of places/results for the specified category 
   const [places, setPlaces] = useState([]);
 
   const geoCode = 'https://www.mapquestapi.com/geocoding/v1/address';
   const placeSearch = 'https://www.mapquestapi.com/search/v4/place';
   
-
   const receivedUserInput = (loc) => {
     setUserLocation(loc);
   };
@@ -32,27 +35,18 @@ function App() {
     }).then((response) => {
       const data = response.data.results[0].locations;
       const newArr = [data[0].latLng.lng, data[0].latLng.lat];
-      console.log('setting Coordinates state');
-      console.log(newArr);
       setCoordinates(newArr);
-    });
+    }).catch((err) => {
+        console.log('error occured!!!', `${err}`);
+      });
   }, [userLocation]);
   
 
   useEffect(() => {
-    console.log(
-      'coordinates state value before initializing location and circle in placeapi useeffect'
-    );
-    console.log(coordinates);
-
     if (coordinates.length > 0) {
+      // if the coordinates state is not set, the axios call would throw an error
       const locationArr = `${coordinates[0]},${coordinates[1]}`;
       const locationCircArr = `${coordinates[0]}, ${coordinates[1]}, 1000`;
-      console.log(
-        'values of locationArr and locationCircArr in place api useeffect'
-      );
-      console.log(locationArr);
-      console.log(locationCircArr);
 
       axios({
         url: placeSearch,
@@ -67,13 +61,12 @@ function App() {
           q: userCategory,
         },
       }).then((response) => {
-        console.log(response);
         setPlaces(response.data.results);
+      }).catch((err) => {
+        console.log('error occured!!!', `${err}`);
       });
     }
   }, [coordinates, userCategory]);
-
-
 
   return (
     <div className="App">
