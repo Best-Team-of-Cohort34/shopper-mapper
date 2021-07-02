@@ -115,13 +115,23 @@ const Form = (props) => {
             <p>
               shopper <span>mapper</span>
             </p>
-            {/* <div>
-              <button onClick={mapOnOff}>
-              <i class="far fa-times-circle"></i>
-              </button>
-            </div> */}
             <div className="mapAndTextContainer">
-              <div className="textContainer">
+
+              <Directions
+                userCoordinates={[props.coordinates[1], props.coordinates[0]]}
+                destCoordinates={[...destCoordinates]}
+                // placeCoordinates={[
+                //   props.places.geometry.coordinates[1],
+                //   props.places.geometry.coordinates[0],
+                // ]}
+              />
+
+              
+            </div>
+          </div>
+        </header>
+      );
+              {/* <div className="textContainer">
                 {
                 props.places.map((item, index) => {
                   console.log(props.places);
@@ -192,10 +202,6 @@ const Form = (props) => {
                 })}
               </Map>
               {/* <Directions /> */}
-            </div>
-          </div>
-        </header>
-      );
     } else {
       return (
         <header className="formHeader">
