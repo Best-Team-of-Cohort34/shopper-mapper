@@ -26,7 +26,7 @@ function App() {
       method: "GET",
       dataResponse: "json",
       params: {
-        key: "A2gQgxxrU94wUIpgIn5Q6XwhGSs6sIjA",
+        key: 'A2gQgxxrU94wUIpgIn5Q6XwhGSs6sIjA',
         location: userLocation,
       },
     }).then((response) => {
@@ -60,8 +60,8 @@ function App() {
         dataResponse: "json",
         params: {
           location: locationArr,
-          sort: "relevance",
-          key: "A2gQgxxrU94wUIpgIn5Q6XwhGSs6sIjA",
+          sort: 'relevance',
+          key: 'A2gQgxxrU94wUIpgIn5Q6XwhGSs6sIjA',
           circle: locationCircArr,
           pageSize: 30,
           q: userCategory,

@@ -85,12 +85,12 @@ const Form = (props) => {
                 <option value="" disabled>
                   Where do you want to go?{" "}
                 </option>
-                <option value="groceries">Grocery Stores</option>
-                <option value="pharmacies">Pharmacies</option>
-                <option value="coffee-shops">Coffee Shops</option>
-                <option value="bakery">Bakeries</option>
-                <option value="restaurants">Restaurants</option>
-                <option value="bars">Bars & Pubs</option>
+                <option value="groceries">🛒 Grocery Stores</option>
+                <option value="pharmacies">💊 Pharmacies</option>
+                <option value="coffee-shops">☕️ Coffee Shops</option>
+                <option value="bakery">🥐 Bakeries</option>
+                <option value="restaurants">🍔 Restaurants</option>
+                <option value="bars">🍺 Bars & Pubs</option>
               </select>
               <button className="formButton" onClick={storedUserInput}>
                 Take me there!
@@ -112,7 +112,8 @@ const Form = (props) => {
             <p>
               shopper <span>mapper</span>
             </p>
-            <div className="mapAndTextContainer">
+          </div>
+            {/* <div className="mapAndTextContainer"> */}
 
               <Directions
                 userCoordinates={[props.coordinates[1], props.coordinates[0]]}
@@ -121,11 +122,11 @@ const Form = (props) => {
                 //   props.places.geometry.coordinates[1],
                 //   props.places.geometry.coordinates[0],
                 // ]}
+                mapOnOff={mapOnOff}
               />
 
-              
-            </div>
-          </div>
+
+          {/* </div> */}
         </header>
       );
               {/* <div className="textContainer">
@@ -208,7 +209,7 @@ const Form = (props) => {
               shopper <span>mapper</span>
             </p>
             <div>
-              <button onClick={mapOnOff}>
+              <button className="closeMap" onClick={mapOnOff}>
               <i class="far fa-times-circle"></i>
               </button>
             </div>
@@ -223,7 +224,7 @@ const Form = (props) => {
                   // ternary in h3,
                   // that says item.name ? middlePlace :
                   <ol>
-                    <li key={item.id}>
+                    <li key={index}>
                       <h3 
                       style={index === middle ? 
                         {background: "#ff9d7f"} : 

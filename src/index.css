@@ -438,6 +438,11 @@ select {
   /* line-height: 1.5; */
 }
 
+.closeMap {
+  border: none;
+  background: transparent;
+}
+
 .fa-times-circle {
   z-index: 100;
   position: absolute;
@@ -445,7 +450,6 @@ select {
   top: 85px;
   font-size: 1.5rem;
   transition: 0.2s;
-  
 }
 
 .fa-times-circle:hover {
@@ -462,6 +466,11 @@ select {
   border-radius: 0 30px 30px 0;
   box-shadow: 0 0 10px #6f6f6f;
   margin: 0;
+  /* object-position: center; */
+}
+
+.icons {
+  width: 25px;
 }
 
 .leaflet-popup-content {
@@ -498,6 +507,15 @@ select {
   background:#5bc6ff9f;
 }
 
+.flex-leaflet-container {
+  display: flex;
+  justify-content: center;
+}
+
+img.mapDirections {
+  width: auto;
+  flex-grow: 1;
+}
 
 /* MEDIA QUERIES */
 
@@ -525,6 +543,7 @@ select {
   .mapAndTextContainer {
     flex-direction: column;
     margin-bottom: 10px;
+    max-width: 65%;
   }
   .textContainer {
     order: 2;
@@ -547,7 +566,7 @@ select {
   }
 
   .fa-times-circle {
-    right: 35px;
+    right: 130px;
   }
 }
 
