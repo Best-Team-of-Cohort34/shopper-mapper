@@ -24,11 +24,15 @@ const Form = (props) => {
   };
   const storedUserInput = (event) => {
     event.preventDefault();
-    location = userPrompt;
-    setSubmitted(true);
-    category = userCategoryForm;
-    props.receivedUserInput(location);
-    props.receivedUserCategory(category);
+    if (userPrompt === '') {
+      alert('please enter address');
+    } else {
+      location = userPrompt;
+      setSubmitted(true);
+      category = userCategoryForm;
+      props.receivedUserInput(location);
+      props.receivedUserCategory(category);
+    }
   };
 
   const test = (destArray) => {
@@ -111,17 +115,19 @@ const Form = (props) => {
             <p>
               shopper <span>mapper</span>
             </p>
-            <div className="mapAndTextContainer">
-              <Directions
-                userCoordinates={[props.coordinates[1], props.coordinates[0]]}
-                destCoordinates={[...destCoordinates]}
-                // placeCoordinates={[
-                //   props.places.geometry.coordinates[1],
-                //   props.places.geometry.coordinates[0],
-                // ]}
-              />
-            </div>
           </div>
+          {/* <div className="mapAndTextContainer"> */}
+
+          <Directions
+            userCoordinates={[props.coordinates[1], props.coordinates[0]]}
+            destCoordinates={[...destCoordinates]}
+            // placeCoordinates={[
+            //   props.places.geometry.coordinates[1],
+            //   props.places.geometry.coordinates[0],
+            // ]}
+          />
+
+          {/* </div> */}
         </header>
       );
       {
@@ -220,7 +226,7 @@ const Form = (props) => {
                     // ternary in h3,
                     // that says item.name ? middlePlace :
                     <ol>
-                      <li key={item.id}>
+                      <li key={index}>
                         <h3
                           style={
                             index === middle

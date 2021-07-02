@@ -14,14 +14,16 @@ function Directions(props) {
       method: 'GET',
       dataResponse: 'json',
       params: {
-        key: '0GC7xtayS34G212Wj5J2TyiN11A1jK5G',
+        key: 'A2gQgxxrU94wUIpgIn5Q6XwhGSs6sIjA',
         from: `${props.userCoordinates[0]},${props.userCoordinates[1]}`,
         to: `${props.destCoordinates[0]},${props.destCoordinates[1]}`,
       },
     }).then((res) => {
       console.log(res);
+      setDirections(res.data.route.legs[0].maneuvers);
+      console.log(directions);
     });
-  });
+  }, []);
 
   // const directionsApi = 'https://www.mapquestapi.com/staticmap/v5/map';
   // const [mapImg, setMapImg] = useState("https://i.pinimg.com/originals/a4/f8/f9/a4f8f91b31d2c63a015ed34ae8c13bbd.jpg");
@@ -50,14 +52,33 @@ function Directions(props) {
   // },[]);
 
   return (
-    <div>
+    <div className="mapAndTextContainer">
       <div className="textContainer">
-        <h3>Directions!!!</h3>
-        <p>narrative</p>
+        {directions.map((item, index) => {
+          console.log(item);
+          // const middle = Math.floor(props.places.length / 2);
+          // console.log(middle);
+          console.log();
+          return (
+            <>
+              <ol>
+                <li key={index}>
+                  <img
+                    className="icons"
+                    src={item.iconUrl}
+                    alt="direction icon"
+                  />
+                  <p>{item.narrative}</p>
+                </li>
+              </ol>
+            </>
+          );
+        })}
       </div>
       <div className="leaflet-container">
         <img
-          src={`https://www.mapquestapi.com/staticmap/v5/map?key=0GC7xtayS34G212Wj5J2TyiN11A1jK5G&start=${props.userCoordinates[0]},${props.userCoordinates[1]}&end=${props.destCoordinates[0]},${props.destCoordinates[1]}&zoom=15&size=500,400@2x`}
+          src={`https://www.mapquestapi.com/staticmap/v5/map?key=A2gQgxxrU94wUIpgIn5Q6XwhGSs6sIjA&start=${props.userCoordinates[0]},${props.userCoordinates[1]}&end=${props.destCoordinates[0]},${props.destCoordinates[1]}&zoom=15&size=500,400@2x`}
+          className="mapDirections"
         />
       </div>
     </div>
