@@ -88,12 +88,12 @@ const Form = (props) => {
                 <option value="" disabled>
                   Where do you want to go?{" "}
                 </option>
-                <option value="groceries">Grocery Stores</option>
-                <option value="pharmacies">Pharmacies</option>
-                <option value="coffee-shops">Coffee Shops</option>
-                <option value="bakery">Bakeries</option>
-                <option value="restaurants">Restaurants</option>
-                <option value="bars">Bars & Pubs</option>
+                <option value="groceries">🛒 Grocery Stores</option>
+                <option value="pharmacies">💊 Pharmacies</option>
+                <option value="coffee-shops">☕️ Coffee Shops</option>
+                <option value="bakery">🥐 Bakeries</option>
+                <option value="restaurants">🍔 Restaurants</option>
+                <option value="bars">🍺 Bars & Pubs</option>
               </select>
               <button className="formButton" onClick={storedUserInput}>
                 Take me there!
@@ -125,6 +125,7 @@ const Form = (props) => {
                 //   props.places.geometry.coordinates[1],
                 //   props.places.geometry.coordinates[0],
                 // ]}
+                mapOnOff={mapOnOff}
               />
 
 
@@ -211,7 +212,7 @@ const Form = (props) => {
               shopper <span>mapper</span>
             </p>
             <div>
-              <button onClick={mapOnOff}>
+              <button className="closeMap" onClick={mapOnOff}>
               <i class="far fa-times-circle"></i>
               </button>
             </div>
