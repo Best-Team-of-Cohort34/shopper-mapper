@@ -276,7 +276,6 @@ img {
 
 h1 {
   color: white;
-  
   font-weight: 100;
   width: 85%;
   padding: 10px;
@@ -284,7 +283,6 @@ h1 {
   display: flex;
   margin: 0 auto;
   font-size: 1.5rem;
-  
 }
 
 .formHeader {
@@ -399,7 +397,7 @@ select {
   min-height: 275px;
   min-width: 275px;
   border-radius: 30px;
-  box-shadow: 0 0 10px 4px #4a4a4a;
+  box-shadow: 0 0 10px #6f6f6f;
   position: fixed;
   top: 0;
   right: 0;
@@ -435,7 +433,6 @@ select {
 .textContainer p span {
   display: inline;
   font-style: normal;
-  /* line-height: 1.5; */
 }
 
 .closeMap {
@@ -466,7 +463,6 @@ select {
   border-radius: 0 30px 30px 0;
   box-shadow: 0 0 10px #6f6f6f;
   margin: 0;
-  /* object-position: center; */
 }
 
 .icons {
@@ -491,12 +487,10 @@ select {
 .popupButton {
   background: #5bc6ff4b;
   border: none;
-  /* trbl */
   padding: 10px 20px;
   border-radius: 20px;
   font-size: 0.75rem;
   text-transform: uppercase;
-  /* margin-top: 10px; */
   font-family: 'Barlow', sans-serif;
   letter-spacing: 1px;
   cursor: pointer;
@@ -524,17 +518,14 @@ img.mapDirections {
     right: 43px;
   }
 }
-
 @media (max-width: 840px) {
   h1 {
     width: 88%;
   }
-
   .fa-times-circle {
     right: 38px;
   }
 }
-
 @media (max-width: 700px) {
   h1 {
     font-size: 1.25rem;
@@ -545,7 +536,6 @@ img.mapDirections {
   select {
     width: 290px;
   }
-
   .mapAndTextContainer {
     flex-direction: column;
     margin-bottom: 10px;
@@ -570,18 +560,15 @@ img.mapDirections {
     border-radius: 30px 30px 0 0;
     height: 60%;
   }
-
   .fa-times-circle {
     right: 130px;
   }
 }
-
 @media (max-width: 600px) {
   .fa-times-circle {
     right: 115px;
   }
 }
-
 @media (max-width: 500px) {
   h1 {
     font-size: 1rem;
@@ -590,19 +577,16 @@ img.mapDirections {
     right: 95px;
   }
 }
-
 @media (max-width: 410px) {
   .fa-times-circle {
     right: 68px;
   }
 }
-
 @media (max-width: 355px) {
   .fa-times-circle {
     right: 50px;
   }
 }
-
 @media (max-width: 330px) {
   .fa-times-circle {
     right: 33px;
