@@ -10,8 +10,6 @@ const Form = (props) => {
   const [submitted, setSubmitted] = useState(false);
   const [clickMarker, setClickMarker] = useState(false);
   const [destCoordinates, setDestCoordinates] = useState([]);
-
-  
   
   let location = '';
   let category = '';
@@ -42,7 +40,6 @@ const Form = (props) => {
     event.preventDefault();
     setSubmitted(false);
   }
-
 
   // rendering pages
   if (!submitted) {
@@ -223,8 +220,8 @@ const Form = (props) => {
                   const middle = Math.floor(props.places.length / 2);
                   console.log(middle);
                 return (
-                  // ternary in h3, 
-                  // that says item.name ? middlePlace : 
+                  // ternary in h3,
+                  // that says item.name ? middlePlace :
                   <ol>
                     <li key={item.id}>
                       <h3 
@@ -234,10 +231,19 @@ const Form = (props) => {
                       
                         >
                         {item.name}</h3>
-                      <p>{item.place.properties.street}, <span className="city">{item.place.properties.city},</span> <span className="province">{item.place.properties.stateCode}</span></p>
+
+                      <p>
+                        {item.place.properties.street},{" "}
+                        <span className="city">
+                          {item.place.properties.city},
+                        </span>{" "}
+                        <span className="province">
+                          {item.place.properties.stateCode}
+                        </span>
+                      </p>
                     </li>
                   </ol>
-                )
+                );
               })}
               </div>
               <Map
@@ -267,10 +273,27 @@ const Form = (props) => {
                       ]}
                       src="./map-marker-icon.png"
                     >
+                      
                       <Popup>
-                      <h3>{item.name}</h3>
-                      <p className="popupText">{item.place.properties.street}, <span className="city">{item.place.properties.city},</span> <span className="province">{item.place.properties.stateCode}</span></p>
-                        <button className="popupButton" onClick={() => test([item.place.geometry.coordinates[1],item.place.geometry.coordinates[0]])}>
+                        <h3>{item.name}</h3>
+                        <p className="popupText">
+                          {item.place.properties.street},{" "}
+                          <span className="city">
+                            {item.place.properties.city},
+                          </span>{" "}
+                          <span className="province">
+                            {item.place.properties.stateCode}
+                          </span>
+                        </p>
+                        <button
+                          className="popupButton"
+                          onClick={() =>
+                            test([
+                              item.place.geometry.coordinates[1],
+                              item.place.geometry.coordinates[0],
+                            ])
+                          }
+                        >
                           click here for directions
                         </button>
                       </Popup>

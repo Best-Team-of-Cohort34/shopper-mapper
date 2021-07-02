@@ -23,16 +23,16 @@ function App() {
   useEffect(() => {
     axios({
       url: geoCode,
-      method: 'GET',
-      dataResponse: 'json',
+      method: "GET",
+      dataResponse: "json",
       params: {
-        key: '0GC7xtayS34G212Wj5J2TyiN11A1jK5G',
+        key: "A2gQgxxrU94wUIpgIn5Q6XwhGSs6sIjA",
         location: userLocation,
       },
     }).then((response) => {
       const data = response.data.results[0].locations;
       const newArr = [data[0].latLng.lng, data[0].latLng.lat];
-      console.log('setting Coordinates state');
+      console.log("setting Coordinates state");
       console.log(newArr);
       setCoordinates(newArr);
     });
@@ -56,12 +56,12 @@ function App() {
 
       axios({
         url: placeSearch,
-        method: 'GET',
-        dataResponse: 'json',
+        method: "GET",
+        dataResponse: "json",
         params: {
           location: locationArr,
-          sort: 'relevance',
-          key: '0GC7xtayS34G212Wj5J2TyiN11A1jK5G',
+          sort: "relevance",
+          key: "A2gQgxxrU94wUIpgIn5Q6XwhGSs6sIjA",
           circle: locationCircArr,
           pageSize: 30,
           q: userCategory,
