@@ -5,7 +5,7 @@ function Directions(props) {
   // getting the route from point A to point B
   const [directions, setDirections] = useState([]);
 
-  const directionsApi = 'http://www.mapquestapi.com/directions/v2/route';
+  const directionsApi = 'https://www.mapquestapi.com/directions/v2/route';
 
   useEffect(() => {
     axios({
