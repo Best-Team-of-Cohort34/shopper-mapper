@@ -460,7 +460,16 @@ select {
   border-radius: 0 30px 30px 0;
   box-shadow: 0 0 10px #6f6f6f;
   margin: 0;
+  /* object-position: center; */
 }
+
+.icons {
+  width: 7%;
+}
+
+/* .mapDirections {
+  height: 100%;
+} */
 
 .leaflet-popup-content {
   display: flex;

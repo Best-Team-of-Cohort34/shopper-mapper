@@ -115,7 +115,8 @@ const Form = (props) => {
             <p>
               shopper <span>mapper</span>
             </p>
-            <div className="mapAndTextContainer">
+          </div>
+            {/* <div className="mapAndTextContainer"> */}
 
               <Directions
                 userCoordinates={[props.coordinates[1], props.coordinates[0]]}
@@ -126,9 +127,8 @@ const Form = (props) => {
                 // ]}
               />
 
-              
-            </div>
-          </div>
+
+          {/* </div> */}
         </header>
       );
               {/* <div className="textContainer">
@@ -226,7 +226,7 @@ const Form = (props) => {
                   // ternary in h3, 
                   // that says item.name ? middlePlace : 
                   <ol>
-                    <li key={item.id}>
+                    <li key={index}>
                       <h3 
                       style={index === middle ? 
                         {background: "#ff9d7f"} : 
