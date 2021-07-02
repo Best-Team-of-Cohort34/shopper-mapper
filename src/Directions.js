@@ -2,11 +2,11 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 function Directions(props) {
-  // const [directions, setDirections] = useState([]);
+  const [directions, setDirections] = useState([]);
   const directionsApi = 'http://www.mapquestapi.com/directions/v2/route';
 
   console.log(props.userCoordinates);
-  console.log(props.destCoordinates);
+  // console.log(props.destCoordinates);
   useEffect(() => {
     axios({
       url: directionsApi,
@@ -24,7 +24,17 @@ function Directions(props) {
 
 
 
-  return <h3>Directions!!!</h3>;
+  return (
+  <div> 
+    <div className="textContainer">
+      <h3>Directions!!!</h3>
+      <p>narrative</p>
+    </div>
+    <div className="leaflet-container">
+      <img src={`https://www.mapquestapi.com/staticmap/v5/map?key=0GC7xtayS34G212Wj5J2TyiN11A1jK5G&start=${props.userCoordinates[0]},${props.userCoordinates[1]}&end=${props.destCoordinates[0]},${props.destCoordinates[1]}&zoom=15&size=500,400@2x`} />
+    </div>
+  </div>
+  );
 }
 
 export default Directions;
